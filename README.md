@@ -30,14 +30,22 @@ cd dotfiles-master/
 
 Create the `config/config.yaml` file prior running the script.
 ```yaml
-GITHUBPROJECT: GITPROJECT # name of YOUR dotfiles project
-GITHUBUSER: GITHUBUSER    # name of YOUR github user
-LASTNAME: LASTNAME        # YOUR lastname
-FIRSTNAME: FIRSTNAME      # YOUR firstname
-EMAIL: EMAIL              # YOUR email address
-GITDIR: GITDIR            # path to where you usually clone your git project
-HOSTNAME: HOSTNAME        # desired hostname for the mMac
-KEEP_SUDO: FALSE          # keep or not passwordless sudo after the install
+# name of YOUR dotfiles project
+GITPROJECT: GITPROJECT
+# name of YOUR github user
+GITUSER: GITHUBUSER
+# YOUR lastname
+LASTNAME: LASTNAME
+# YOUR firstname
+FIRSTNAME: FIRSTNAME
+# YOUR email address
+EMAIL: EMAIL
+# path to where you usually clone your git project
+GITDIR: GITDIR
+# desired hostname for the mMac
+HOSTNAME: HOSTNAME
+# keep or not passwordless sudo after the install - false = remove, everything else = keep
+KEEPSUDO: "false"
 ```
 
 Once done, execute the `install.sh` script
