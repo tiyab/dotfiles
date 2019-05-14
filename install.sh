@@ -1059,6 +1059,7 @@ function cleanup() {
 }
 
 logstart
+getconfig
 tracedumpvar RUNDIR LOGDIR LOGFILE VERBOSE GITPROJECT GITUSER LASTNAME FIRSTNAME EMAIL GITDIR HOSTNAME KEEPSUDO
 backup
 passwordlesssudo
