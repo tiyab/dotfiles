@@ -6,6 +6,12 @@
 # LICENSE     : GNU GPLv3
 # --------------------------------------------------------------------------- #
 
+# //TODO: try to remove xcode part and see how it behaves
+# //TODO: manage exit on interruption (CTRL + C)
+# //TODO: send log file to email
+# //TODO: how to manage file if script is rerun from ~/Git/Dotfiles?
+
+
 RUNDIR=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 LOGDIR="${RUNDIR}/log"
 CONFIGDIR="${RUNDIR}/config"
@@ -1040,8 +1046,11 @@ function ossettings() {
 
 function cleanup() {
   traceinfo "Cleaning installation files"
+  # if [[ ${GITDIR}/${GITPROJECT} != ${RUNDIR} ]]
   traceinfo "Making sure that the project has been clone to ${GITDIR}"
-  tracecommand "git clone git@github.com:${GITUSER}/${GITPROJECT}.git ${GITDIR}"
+  if [[ -z ${GITPROJECT} ]]; then
+    tracecommand "git clone git@github.com:${GITUSER}/${GITPROJECT}.git ${GITDIR}"
+  fi
   traceinfo "Saving modified config.yaml"
   tracecommand "cp -a ${CONFIGDIR}/config.yaml ${GITDIR}/dotfiles/config/config.yaml"
   traceinfo "Making sure that config.yaml is not uploaded to git"
