@@ -271,7 +271,7 @@ The following will only happen if you agree on the prompt
 - Disable continuous spell checking
 
 # Resources
-- C8H10N4O2 (a lot!)
+- :coffee: :coffee: :coffee:
 - [vscode](https://code.visualstudio.com/download)
 - [shellcheck](https://www.shellcheck.net/)
 - [BashFAQ](https://mywiki.wooledge.org/BashFAQ)
