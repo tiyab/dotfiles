@@ -71,7 +71,7 @@ function backup() {
   traceinfo "Backuping existing dotfiles"
   tracecommand "mkdir -p ${BACKUP_DIR}/dotfiles"
   tracecommand "shopt -s dotglob"
-  tracecommand "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ \;"
+  tracecommand "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ \;" # try to do \\;
   tracecommand "shopt -u dotglob"
   tracesuccess "Backup done"
 }
