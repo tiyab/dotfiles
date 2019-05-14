@@ -292,10 +292,10 @@ function vscodeconfig() {
 function dotfiles() {
   tracenotify "DOTFILES CONFIGURATION"
   hostconfig
-  # sshconfig
+  sshconfig
   xcodeconfig
   brewconfig
-  # gitconfig
+  gitconfig
   zshconfig
   fontconfig
   vimconfig
