@@ -5,6 +5,7 @@
 # ╰[ ⁰﹏⁰ ]╯ - Dotfiles bot
 
 Almost unattended dotfiles for Mac
+
 Bash only, no dependencies!
 
 # About
