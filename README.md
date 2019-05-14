@@ -1,3 +1,7 @@
+![](https://img.shields.io/badge/license-GPL%20v3-green.svg)
+![](https://img.shields.io/badge/GNU%20bash-%3E%3D%203.2-blue.svg)
+![](https://img.shields.io/badge/dependencies-none-lightgrey.svg)
+
 # ╰[ ⁰﹏⁰ ]╯ - Dotfiles bot
 
 Almost unattended dotfiles for Mac
@@ -265,6 +269,7 @@ The following will only happen if you agree on the prompt
 - [Log level](http://www.ludovicocaldara.net/dba/bash-tips-4-use-logging-levels/)
 - [Log file](http://www.ludovicocaldara.net/dba/bash-tips-5-output-logfile/)
 - [Root of everything](https://github.com/atomantic/dotfiles)
+- [Shields IO](https://shields.io/)
 
 # LICENSE
 [GNU GENERAL PUBLIC LICENSE v3](LICENSE)
