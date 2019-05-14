@@ -45,6 +45,15 @@ Once done, execute the `install.sh` script
 ./install.sh
 ```
 
+A few options are available for installation:
+```shell
+- ./install.sh -V # verbose mode, all INFO will be displayed and logged.
+- ./install.sh -D # debug mode, all INFO and all commands will be displayed and logged.
+- ./install.sh -S # silent mode, only ╰[ ⁰﹏⁰ ]╯ will be displayed and logged.
+```
+
+By default, it will run with NOTIFICATION, WARNING, ERRROR and SUCCESS.
+
 # What is done for you
 
 ## backup
