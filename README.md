@@ -3,144 +3,92 @@
 Almost unattended dotfiles for Mac
 Bash only, no dependencies!
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+# About
+> Note: Read me until the end before running the install script!
 
+This script purposes is to configure newly installed Mac with just the input of sudo password.
 
-- [Forget About Manual Configuration!](#forget-about-manual-configuration)
-- [Watch me run!](#watch-me-run)
-- [Installation](#installation)
-  - [Restoring Dotfiles](#restoring-dotfiles)
-- [3.x.x+ Upgrade Instructions!](#3xx-upgrade-instructions)
-- [Additional](#additional)
-  - [VIM as IDE](#vim-as-ide)
-  - [Crontab](#crontab)
-  - [Remap Caps-Lock](#remap-caps-lock)
-- [Settings](#settings)
-  - [SSD-specific tweaks](#ssd-specific-tweaks)
-  - [General System Changes](#general-system-changes)
-  - [Security](#security)
-  - [Trackpad, mouse, keyboard, Bluetooth accessories, and input](#trackpad-mouse-keyboard-bluetooth-accessories-and-input)
-  - [Configuring the Screen](#configuring-the-screen)
-  - [Finder Configs](#finder-configs)
-  - [Dock & Dashboard](#dock--dashboard)
-  - [Configuring Hot Corners](#configuring-hot-corners)
-  - [Configuring Safari & WebKit](#configuring-safari--webkit)
-  - [Configuring Mail](#configuring-mail)
-  - [Spotlight](#spotlight)
-  - [iTerm2](#iterm2)
-  - [Time Machine](#time-machine)
-  - [Activity Monitor](#activity-monitor)
-  - [Address Book, Dashboard, iCal, TextEdit, and Disk Utility](#address-book-dashboard-ical-textedit-and-disk-utility)
-  - [Mac App Store](#mac-app-store)
-  - [Messages](#messages)
-  - [SizeUp.app](#sizeupapp)
-- [Software Installation](#software-installation)
-  - [Utilities](#utilities)
-  - [Apps](#apps)
-  - [NPM Global Modules](#npm-global-modules)
-  - [Ruby Gems](#ruby-gems)
-- [License](#license)
-- [Contributions](#contributions)
-- [Loathing, Mehs and Praise](#loathing-mehs-and-praise)
-- [¯\\_(ツ)_/¯ Warning / Liability](#%C2%AF%5C%5C_%E3%83%84_%C2%AF-warning--liability)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Forget About Manual Configuration!
-
-Don't you hate getting a new laptop or joining a new team and then spending a whole day setting up your system preferences and tools? Me too. That's why we automate; we did it once and we don't want to do have to do it again.
-
-\\[^_^]/ - This started as [Adam Eivy](http://adameivy.com)'s MacOS shell configuration dotfiles but has grown to a multi-developer platform for machine configuration.
-
-When I finish with your machine, you will be able to look at your command-line in full-screen mode like this (running iTerm):
-
-![iTerm Screenshot](https://raw.githubusercontent.com/atomantic/dotfiles/master/img/term.png)
-
-Check out how your shell prompt includes the full path, node.js version & the working git branch along with a lot of other info!
-We use powerlevel9k for command prompt, so customization of what you want is easily changable in `./.zshrc`
-The top terminal is using vim + NerdTree as a full Atom replacement IDE.
-The bottom left two are git terminals.
-The bottom right is running `vtop`
-
-To launch fullscreen, hit `Command + Enter` in iTerm, then use `Command + d` and `Command + D` to create split panes.
-
-
-\\[._.]/ - I'm so excited I just binaried in my pants!
-
-# Watch me run!
-![Running](http://media.giphy.com/media/5xtDarwenxEoFeIMEM0/giphy.gif)
+It is using only bash command and shellcheck proof.
+If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
 # Installation
+> Note: Please review the code before running it blindly
 
-> Note: I recommend forking this repo in case you don't like anything I do and want to set your own preferences (and pull request them!)
+Open a Terminal and run the following commands:
+```
+curl -LO https://github.com/tiyab/dotfiles/archive/master.zip
+unzip master.zip
+cd dotfiles-master/
+```
 
-> REVIEW WHAT THIS SCRIPT DOES PRIOR TO RUNNING: https://github.com/atomantic/dotfiles/blob/master/install.sh#L275-L1038
-> It's always a good idea to review arbitrary code from the internet before running it on your machine with sudo power!
-> You are responsible for everything this script does to your machine (see LICENSE)
+> Note: It is really important to update this file!
 
-```bash
-git clone --recurse-submodules https://github.com/tiyab/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles;
-# run this using terminal (not iTerm, lest iTerm settings get discarded on exit)
+Edit the `config/config.yaml` file prior running the script.
+```yaml
+GITHUBPROJECT: GITPROJECT # name of YOUR dotfiles project
+GITHUBUSER: GITHUBUSER    # name of YOUR github user
+LASTNAME: LASTNAME        # YOUR lastname
+FIRSTNAME: FIRSTNAME      # YOUR firstname
+EMAIL: EMAIL              # YOUR email address
+GITDIR: GITDIR            # path to where you usually clone your git project
+HOSTNAME: HOSTNAME        # desired hostname for the mMac
+KEEP_SUDO: FALSE          # keep or not passwordless sudo after the install
+```
+
+Once done, execute the `install.sh` script
+```shell
 ./install.sh
 ```
-* When it finishes, open iTerm and press `Command + ,` to open preferences. Under Profiles > Colors, select "Load Presets" and choose the `Solarized Dark Patch` scheme. If it isn't there for some reason, import it from `~/.dotfiles/configs` -- you may also need to select the `Hack` font and check the box for non-ascii font and set to `Roboto Mono For Powerline` (I've had mixed results for automating these settings--love a pull request that improves this)
-* I've also found that you need to reboot before fast key repeat will be enabled
 
-> Note: running install.sh is idempotent. You can run it again and again as you add new features or software to the scripts! I'll regularly add new configurations so keep an eye on this repo as it grows and optimizes.
+# What is done for you
 
-## Restoring Dotfiles
+## backup
+When this script is executed it will create the following backup directory: `$HOME/dotfiles_backup`.
+The following files will be backup if there is any:
+- /etc/hosts
+- $HOME/.ssh
+- $HOME/.*  <-- files only
 
-If you have existing dotfiles for configuring git, zsh, vim, etc, these will be backed-up into `~/.dotfiles_backup/$(date +"%Y.%m.%d.%H.%M.%S")` and replaced with the files from this project. You can restore your original dotfiles by using `./restore.sh $RESTOREDATE` where `$RESTOREDATE` is the date folder name you want to restore.
+## passwordless sudo
 
-> The restore script does not currently restore system settings--only your original dotfiles. To restore system settings, you'll need to manually undo what you don't like (so don't forget to fork, review, tweak)
+In order to execute the whole unattended, passwordless sudo need to be configured. You can choose to disable it once the script has been executed with the setting
+`KEEP_SUDO` in the `config/config.yaml` file.
 
+## `hosts` file
 
-# 3.x.x+ Upgrade Instructions!
+A good machine is a machine with a good `/etc/hosts` file.
+Updated from [https://someonewhocares.org/hosts/hosts](https://someonewhocares.org/hosts/hosts)
 
-`3.0.0` brings huge changes. If you have made any modifications (and didn't make your own fork), you will want to backup your dotfiles prior to running `git-up` or `git pull` on `~/.dotfiles`.
+## ssh
 
-Do the following to upgrade your ~/.dotfiles safely:
+It will generate a new pair of SSH keys ready to be used.
 
-1. backup your dotfiles: `cp -R ~/.dotfiles ~/.dotfiles_old`
-2. `cd ~/.dotfiles`
-3. update dotfiles: `git-up` or `git pull`
-4. remove old submodule location: `rm -rf .vim` (now lives in `homedir/.vim`)
-5. inspect `install.sh` and `config.js` to make sure all the software you want is installed
-6. inspect `homedir/*` for any changes you want to port from `./dotfiles_old`
-7. run `install.sh` again
+## Software Installation & configuration
+> Note: For the moment I don't need ruby and nvm so not installed.
 
-# Additional
+Most application installed during the process are available in `config/brew.yaml` and `config/cask.yaml`.
 
-## VIM as IDE
-I am moving away from using `Atom` and instead using `vim` as my IDE. I use Vundle to manage vim plugins (instead of pathogen). Vundle is better in many ways and is compatible with pathogen plugins. Additionally, vundle will manage and install its own plugins so we don't have to use git submodules for all of them.
+If an application need some configuration, it is then install just before its configuration. List of application is:
+- git
+- vim
+- vscode
+- zsh
 
-## Crontab
-You can `cron ~/.crontab` if you want to add my nightly cron software updates.
+## OS configuration
+Same list as [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
-> \\[0_0]/ - Note that this may wake you in the morning to compatibility issues so use only if you like being on the edge
-
-## Remap Caps-Lock
-- I highly recommend remapping your Caps Lock key to Control per [Dr. Bunsen](http://www.drbunsen.org/remapping-caps-lock/):
-![Remap Caps Lock](https://raw.githubusercontent.com/atomantic/dotfiles/master/img/remap_capslock.png)
-
-# Settings
-This project changes a number of settings and configures software on MacOS.
-Here is the current list:
-
-## Prompt Driven Configuration
+### Prompt Driven Configuration
 The following will only happen if you agree on the prompt
 - install a gitshots script to take a photo using your camera on every git commit (these go in as a post-commit hook to your .git_template)
 - overwrite your /etc/hosts file with a copy from someonewhocares.org (see ./configs/hosts for the file that will be used)
 - replace the system wallpaper with `img/wallpaper.jpg`
 
-## SSD-specific tweaks  
+### SSD-specific tweaks  
 - Disable local Time Machine snapshots
 - Disable hibernation (speeds up entering sleep mode)
 - Remove the sleep image file to save disk space
 
-## General System Changes
+### General System Changes
 - always boot in verbose mode (not MacOS GUI mode)
 - Disable the sound effects on boot
 - Menu bar: disable transparency
@@ -168,7 +116,7 @@ The following will only happen if you agree on the prompt
 - Disable smart quotes as they’re annoying when typing code
 - Disable smart dashes as they’re annoying when typing code
 
-## Security
+### Security
 - Enable firewall
 - Enable firewall stealth mode (no response to ICMP / ping requests)
 - Disable remote apple events
@@ -176,7 +124,7 @@ The following will only happen if you agree on the prompt
 - Disable wake-on LAN
 - Disable guest account login
 
-## Trackpad, mouse, keyboard, Bluetooth accessories, and input
+### Trackpad, mouse, keyboard, Bluetooth accessories, and input
 - Trackpad: enable tap to click for this user and for the login screen
 - Trackpad: map bottom right corner to right-click
 - Disable “natural” (Lion-style) scrolling
@@ -189,7 +137,7 @@ The following will only happen if you agree on the prompt
 - Set language and text formats (english/US)
 - Disable auto-correct
 
-## Configuring the Screen
+### Configuring the Screen
 - Require password immediately after sleep or screen saver begins
 - Save screenshots to the desktop
 - Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
@@ -197,7 +145,7 @@ The following will only happen if you agree on the prompt
 - Enable subpixel font rendering on non-Apple LCDs
 - Enable HiDPI display modes (requires restart)
 
-## Finder Configs
+### Finder Configs
 - Keep folders on top when sorting by name (Sierra only)
 - Allow quitting via ⌘ + Q; doing so will also hide desktop icons
 - Disable window animations and Get Info animations
@@ -222,7 +170,7 @@ The following will only happen if you agree on the prompt
 - Show the ~/Library folder
 - Expand the following File Info panes: “General”, “Open with”, and “Sharing & Permissions”
 
-## Dock & Dashboard
+### Dock & Dashboard
 - Enable highlight hover effect for the grid view of a stack (Dock)
 - Set the icon size of Dock items to 36 pixels
 - Change minimize/maximize window effect to scale
@@ -242,12 +190,12 @@ The following will only happen if you agree on the prompt
 - Make Dock more transparent
 - Reset Launchpad, but keep the desktop wallpaper intact
 
-## Configuring Hot Corners
+### Configuring Hot Corners
 - Top left screen corner → Mission Control
 - Top right screen corner → Desktop
 - Bottom right screen corner → Start screen saver
 
-## Configuring Safari & WebKit
+### Configuring Safari & WebKit
 - Set Safari’s home page to ‘about:blank’ for faster loading
 - Prevent Safari from opening ‘safe’ files automatically after downloading
 - Allow hitting the Backspace key to go to the previous page in history
@@ -260,7 +208,7 @@ The following will only happen if you agree on the prompt
 - Enable the Develop menu and the Web Inspector in Safari
 - Add a context menu item for showing the Web Inspector in web views
 
-## Configuring Mail
+### Configuring Mail
 - Disable send and reply animations in Mail.app
 - Copy email addresses as 'foo@example.com' instead of 'Foo Bar <foo@example.com>' in Mail.app
 - Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
@@ -268,13 +216,13 @@ The following will only happen if you agree on the prompt
 - Disable inline attachments (just show the icons)
 - Disable automatic spell checking
 
-## Spotlight
+### Spotlight
 - Disable Spotlight indexing for any volume that gets mounted and has not yet been indexed
 - Change indexing order and disable some file types from being indexed
 - Load new settings before rebuilding the index
 - Make sure indexing is enabled for the main volume
 
-## iTerm2
+### iTerm2
 - Installing the Solarized Dark theme for iTerm
 - Don’t display the annoying prompt when quitting iTerm
 - Hide tab title bars
@@ -282,119 +230,45 @@ The following will only happen if you agree on the prompt
 - Set normal font to Hack 12pt
 - Set non-ascii font to Roboto Mono for Powerline 12pt
 
-## Time Machine
+### Time Machine
 - Prevent Time Machine from prompting to use new hard drives as backup volume
 - Disable local Time Machine backups
 
-## Activity Monitor
+### Activity Monitor
 - Show the main window when launching Activity Monitor
 - Visualize CPU usage in the Activity Monitor Dock icon
 - Show all processes in Activity Monitor
 - Sort Activity Monitor results by CPU usage
 
-## Address Book, Dashboard, iCal, TextEdit, and Disk Utility
+### Address Book, Dashboard, iCal, TextEdit, and Disk Utility
 - Enable the debug menu in Address Book
 - Enable Dashboard dev mode (allows keeping widgets on the desktop)
 - Use plain text mode for new TextEdit documents
 - Open and save files as UTF-8 in TextEdit
 - Enable the debug menu in Disk Utility
 
-## Mac App Store
+### Mac App Store
 - Enable the WebKit Developer Tools in the Mac App Store
 - Enable Debug Menu in the Mac App Store
 
-## Messages
+### Messages
 - Disable automatic emoji substitution (i.e. use plain text smileys)
 - Disable smart quotes as it’s annoying for messages that contain code
 - Disable continuous spell checking
 
-## SizeUp.app
-- Start SizeUp at login
-- Don’t show the preferences window on next start
+# Resources
+- C8H10N4O2 (a lot!)
+- [vscode](https://code.visualstudio.com/download)
+- [shellcheck](https://www.shellcheck.net/)
+- [BashFAQ](https://mywiki.wooledge.org/BashFAQ)
+- [StyleGuide](https://google.github.io/styleguide/shell.xml#Variable_Names)
+- [Log level](http://www.ludovicocaldara.net/dba/bash-tips-4-use-logging-levels/)
+- [Log file](http://www.ludovicocaldara.net/dba/bash-tips-5-output-logfile/)
+- [Root of everything](https://github.com/atomantic/dotfiles)
 
-# Software Installation
+# LICENSE
+[GNU GENERAL PUBLIC LICENSE v3](LICENSE)
 
-homebrew, fontconfig, git, ruby (latest), nvm (node + npm), and zsh (latest) are all installed inside the `install.sh` as foundational software for running this project.
-Additional software is configured in `config.js` and can be customized in your own fork/branch (you can change everything in your own fork/brance).
-The following is the software that I have set as default:
-
-## Utilities
-
-* ack
-* ag
-* coreutils
-* dos2unix
-* findutils
-* fortune
-* gawk
-* gifsicle
-* gnupg
-* gnu-sed
-* homebrew/dupes/grep
-* httpie
-* imagemagick (only if gitshots enabled)
-* imagesnap (only if gitshots enabled)
-* jq
-* mas
-* moreutils
-* nmap
-* openconnect
-* reattach-to-user-namespace
-* homebrew/dupes/screen
-* tmux
-* tree
-* ttyrec
-* vim --override-system-vi
-* watch
-* wget --enable-iri
-
-## Apps
-* box-sync
-* gpgtools
-* iterm2
-* sizeup
-* slack
-* the-unarchiver
-* xquartz
-
-## NPM Global Modules
-
-* antic
-* buzzphrase
-* eslint
-* gulp
-* instant-markdown-d
-* npm-check
-* prettyjson
-* trash
-* vtop
-
-## Ruby Gems
-* git-up
-
-# License
-This project is licensed under ISC. Please fork, contribute and share.
-
-# Contributions
-Contributions are always welcome in the form of pull requests with explanatory comments.
-
-Please refer to the [Contributor Covenant](https://github.com/atomantic/dotfiles/blob/master/CODE_OF_CONDUCT.md)
-
-# Loathing, Mehs and Praise
-1. Loathing should be directed into pull requests that make it better. woot.
-2. Bugs with the setup should be put as GitHub issues.
-3. Mehs should be > /dev/null
-4. Praise should be directed to [![@antic](https://img.shields.io/twitter/follow/antic.svg?style=social&label=@antic)](https://twitter.com/antic)
-
-# Tips Accepted
-⚡ Lightning Network Satoshi Tips Accepted https://tippin.me/@antic
-> With the advent of Bitcoin Lightning Network, you can tip me as little as 1 satoshi (.00000001 $BTC). 1000 satoshi is about $.04 as of this writing. Any amount is appreciated and playing with Lightning will help you learn about the future of the internet! :)
-
-Don't have Lightning? 
-- [Blue Wallet (for iOS and Android)](https://bluewallet.io/)
-- [Eclair Wallet (for Android)](https://play.google.com/store/apps/details?id=fr.acinq.eclair.wallet.mainnet2)
-
-
-# ¯\\_(ツ)_/¯ Warning / Liability
+# ¯Warning / Liability
 > Warning:
 The creator of this repo is not responsible if your machine ends up in a state you are not happy with. If you are concerned, look at the code to review everything this will do to your machine :)
