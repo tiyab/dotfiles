@@ -1,5 +1,5 @@
-GITHUBPROJECT: GITPROJECT # name of YOUR dotfiles project
-GITHUBUSER: GITHUBUSER    # name of YOUR github user
+GITPROJECT: GITPROJECT # name of YOUR dotfiles project
+GITUSER: GITHUBUSER    # name of YOUR github user
 LASTNAME: LASTNAME        # YOUR lastname
 FIRSTNAME: FIRSTNAME      # YOUR firstname
 EMAIL: EMAIL              # YOUR email address
