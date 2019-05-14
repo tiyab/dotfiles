@@ -28,7 +28,7 @@ cd dotfiles-master/
 
 > Note: It is really important to update this file!
 
-Edit the `config/config.yaml` file prior running the script.
+Create the `config/config.yaml` file prior running the script.
 ```yaml
 GITHUBPROJECT: GITPROJECT # name of YOUR dotfiles project
 GITHUBUSER: GITHUBUSER    # name of YOUR github user

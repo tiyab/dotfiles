@@ -96,10 +96,6 @@ function passwordlesssudo() {
 function getconfig() {
   separator
   tracenotify "● Getting configuration information"
-  if [[ "$(md5 -q "${CONFIGDIR}/config.yaml")" == "6d5c36d11d7b1cb90d10d18886e5cbe1" ]]; then
-    traceerror "Please update ${CONFIGDIR}/config.yaml file"
-    exit 1
-  fi
   if [[ -f ${CONFIGDIR}/config.yaml && -s ${CONFIGDIR}/config.yaml ]]; then
     while IFS=': ' read -r key value; do
       case $key in
