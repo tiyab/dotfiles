@@ -1049,14 +1049,13 @@ function cleanup() {
   fi
 }
 
-# logstart
-
+logstart
 tracedumpvar RUN_DIR LOG_DIR CONFIG_DIR FILES_DIR LIB_DIR BACKUP_DIR
 backup
 passwordlesssudo
 dotfiles
 ossettings
 cleanup
-# logstop
+logstop
 
 "${gitdir}"/dotfiles/cleanup.sh "${SCRIPT_DIR}" "${gitdir}"
