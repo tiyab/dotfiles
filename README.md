@@ -269,6 +269,6 @@ The following will only happen if you agree on the prompt
 # LICENSE
 [GNU GENERAL PUBLIC LICENSE v3](LICENSE)
 
-# ¯Warning / Liability
+# Warning / Liability
 > Warning:
 The creator of this repo is not responsible if your machine ends up in a state you are not happy with. If you are concerned, look at the code to review everything this will do to your machine :)
