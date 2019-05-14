@@ -6,25 +6,25 @@
 # LICENSE     : GNU GPLv3
 # --------------------------------------------------------------------------- #
 
-RUN_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
-LOG_DIR="${RUN_DIR}/log"
-CONFIG_DIR="${RUN_DIR}/config"
-FILES_DIR="${RUN_DIR}/files"
-LIB_DIR="${RUN_DIR}/lib"
+RUNDIR=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
+LOGDIR="${RUNDIR}/log"
+CONFIGDIR="${RUNDIR}/config"
+FILESDIR="${RUNDIR}/files"
+LIBDIR="${RUNDIR}/lib"
 BACKUP_DIR="${HOME}/dotfiles_backup"
-LOG_FILE="${LOG_DIR}/$(date +"%Y%m%d%H%M%S").${BASH_SOURCE##*/}.log"
+LOGFILE="${LOGDIR}/$(date +"%Y%m%d%H%M%S").${BASH_SOURCE##*/}.log"
 
-export LOG_FILE
+export LOGFILE
 export VERBOSE
 
 # CD into script directory
-cd "${RUN_DIR}" || exit
+cd "${RUNDIR}" || exit
 # shellcheck disable=SC1091
 # shellcheck source=lib/sh/fmwk.sh
-source "${LIB_DIR}/sh/fmwk.sh"
+source "${LIBDIR}/sh/fmwk.sh"
 # shellcheck disable=SC1091
 # shellcheck source=lib/sh/isntallers.sh
-source "${LIB_DIR}/sh/installers.sh"
+source "${LIBDIR}/sh/installers.sh"
 
 OPTIND=1
 while getopts ":SVD" opt; do
@@ -59,7 +59,9 @@ function backup() {
     tracesuccess "/etc/hosts backup done"
   fi
   traceinfo "Backuping SSH keys"
-  tracecommand "cp -aR ${HOME}/.ssh ${BACKUP_DIR}/dotfiles/ssh"
+  if [[ -d ${HOME}/.ssh ]]; then
+    tracecommand "cp -aR ${HOME}/.ssh ${BACKUP_DIR}/dotfiles/ssh"
+  fi
   traceinfo "Backuping existing dotfiles"
   tracecommand "mkdir -p ${BACKUP_DIR}/dotfiles"
   tracecommand "shopt -s dotglob"
@@ -94,20 +96,20 @@ function passwordlesssudo() {
 function getconfig() {
   separator
   tracenotify "● Getting configuration information"
-  if [[ "$(md5 -q "${CONFIG_DIR}/config.yaml")" == "60f0249e152fbee0ac90a7c9208ba133" ]]; then
-    traceerror "Please update ${CONFIG_DIR}/config.yaml file"
+  if [[ "$(md5 -q "${CONFIGDIR}/config.yaml")" == "59511d8a9574d4836d053a7389e66cf1" ]]; then
+    traceerror "Please update ${CONFIGDIR}/config.yaml file"
     exit 1
   fi
-  if [[ -f ${CONFIG_DIR}/config.yaml && -s ${CONFIG_DIR}/config.yaml ]]; then
+  if [[ -f ${CONFIGDIR}/config.yaml && -s ${CONFIGDIR}/config.yaml ]]; then
     while IFS=': ' read -r key value; do
       case $key in
         '#'*) ;;
         *) eval "$key"="${value}"
       esac
-    done < "${CONFIG_DIR}/config.yaml"
+    done < "${CONFIGDIR}/config.yaml"
     traceinfo "Setting variables"
   else
-    traceerror "Missing ${CONFIG_DIR}/config.yaml file or empty"
+    traceerror "Missing ${CONFIGDIR}/config.yaml file or empty"
     exit 1
   fi
 }
@@ -131,7 +133,7 @@ function sshconfig() {
     traceinfo "Existing SSH keys detected, skipping SSH keys creation"
   else
     traceinfo "Generating new ssh keys"
-    tracedebug "ssh keygen -t rsa -C \"${GITHUBUSER}@${HOSTNAME}\" -q"
+    tracedebug "ssh keygen -t rsa -C \"${GITUSER}@${HOSTNAME}\" -q"
     if [[ -f ${HOME}/.ssh/id_rsa && -f ${HOME}/.ssh/id_rsa.pub ]]; then
       tracesuccess "New ssh keys available in ${HOME}/.ssh"
     else
@@ -177,11 +179,11 @@ function brewconfig() {
   tracenotify "● Brew app installation"
   while IFS= read -r brew; do
     brewinstall "${brew}"
-  done < "${CONFIG_DIR}/brew.yaml"
+  done < "${CONFIGDIR}/brew.yaml"
   tracenotify "● Casks app installation"
   while IFS= read -r cask; do
     caskinstall "${cask}"
-  done < "${CONFIG_DIR}/cask.yaml"
+  done < "${CONFIGDIR}/cask.yaml"
 
   traceinfo "Cleanup homebrew"
   tracedebug "brew cleanup --force"
@@ -195,10 +197,10 @@ function gitconfig() {
   brewinstall git
   tracenotify "● GIT configuration"
   traceinfo "Setting up global .gitconfig"
-  tracecommand "cp -a ${FILES_DIR}/gitconfig ${HOME}/.gitconfig"
+  tracecommand "cp -a ${FILESDIR}/gitconfig ${HOME}/.gitconfig"
   tracecommand "sed -ie 's/GITHUBNAME/${FIRSTNAME} ${LASTNAME}/g' ${HOME}/.gitconfig"
   tracecommand "sed -ie 's/GITHUBMAIL/${EMAIL}/g' ${HOME}/.gitconfig"
-  tracecommand "sed -ie 's/GITHUBUSER/${GITHUBUSER}/g' ${HOME}/.gitconfig"
+  tracecommand "sed -ie 's/GITUSER/${GITUSER}/g' ${HOME}/.gitconfig"
 
   traceinfo "Setting up directory for Git projects"
   tracecommand "mkdir -p ${GITDIR}"
@@ -230,13 +232,13 @@ function zshconfig() {
   # shellcheck disable=SC2154
   tracecommand "find ${HOME}/.zprezto/runcoms -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
   tracecommand "shopt -u extglob"
-  if [[ -f ${FILES_DIR}/zprofile ]]; then
+  if [[ -f ${FILESDIR}/zprofile ]]; then
     traceinfo "Setting up custom .zprofile"
-    tracecommand "ln -sf ${FILES_DIR}/zprofile $HOME/.zprofile"
+    tracecommand "ln -sf ${FILESDIR}/zprofile $HOME/.zprofile"
   fi
-  if [[ -f ${FILES_DIR}/zshrc ]]; then
+  if [[ -f ${FILESDIR}/zshrc ]]; then
     traceinfo "Setting up custom .zshrc"
-    tracecommand "ln -sf ${FILES_DIR}/zshrc $HOME/.zshrc"
+    tracecommand "ln -sf ${FILESDIR}/zshrc $HOME/.zshrc"
   fi
   tracesuccess "prezto for zsh has been setup"
 }
@@ -255,7 +257,7 @@ function vimconfig() {
   traceinfo "Vim installation"
   brewinstall vim
   traceinfo "Setting up custom vimrc"
-  if [[ -f ${FILES_DIR}/vimrc ]]; then
+  if [[ -f ${FILESDIR}/vimrc ]]; then
     tracecommand "ln -sf ${SCRIPT_DIR}/files/vimrc $HOME/.vimrc"
   fi
   traceinfo "Installing Vundle"
@@ -924,7 +926,7 @@ function ossettings() {
   TERM_PROFILE='Solarized.Dark.xterm-256color'
   CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')"
   if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-    tracecommand "open ${FILES_DIR}/terminal/${TERM_PROFILE}.terminal"
+    tracecommand "open ${FILESDIR}/terminal/${TERM_PROFILE}.terminal"
     sleep 1; # Wait a bit to make sure the theme is loaded
     tracecommand "defaults write com.apple.terminal 'Default Window Settings' -string ${TERM_PROFILE}"
     tracecommand "defaults write com.apple.terminal 'Startup Window Settings' -string ${TERM_PROFILE}"
@@ -935,11 +937,11 @@ function ossettings() {
   tracecommand "defaults write com.apple.terminal FocusFollowsMouse -bool true"
   # tracecommand "defaults write org.x.X11 wm_ffm -bool true"
   traceinfo "Installing the Solarized Light theme for iTerm (opening file)"
-  tracecommand open "${FILES_DIR}/terminal/Solarized.Light.itermcolors"
+  tracecommand open "${FILESDIR}/terminal/Solarized.Light.itermcolors"
   traceinfo "Installing the Patched Solarized Dark theme for iTerm (opening file)"
-  tracecommand open "${FILES_DIR}/terminal/Solarized.Dark.Patch.itermcolors"
+  tracecommand open "${FILESDIR}/terminal/Solarized.Dark.Patch.itermcolors"
   traceinfo "Installing the Panda syntax theme for iTerm (opening file)"
-  tracecommand "open ${FILES_DIR}/terminal/panda.syntax.itermcolors"
+  tracecommand "open ${FILESDIR}/terminal/panda.syntax.itermcolors"
 
   traceinfo "Don’t display the annoying prompt when quitting iTerm"
   tracecommand "defaults write com.googlecode.iterm2 PromptOnQuit -bool false"
@@ -1043,21 +1045,21 @@ function ossettings() {
 function cleanup() {
   traceinfo "Cleaning installation files"
   traceinfo "Making sure that the project has been clone to ${GITDIR}"
-  tracecommand "git clone git@github.com:${GITHUBUSER}/${GITHUBPROJECT}.git ${GITDIR}"
+  tracecommand "git clone git@github.com:${GITUSER}/${GITPROJECT}.git ${GITDIR}"
   traceinfo "Saving modified config.yaml"
-  tracecommand "cp -a ${CONFIG_DIR}/config.yaml ${GITDIR}/dotfiles/config/config.yaml"
+  tracecommand "cp -a ${CONFIGDIR}/config.yaml ${GITDIR}/dotfiles/config/config.yaml"
   traceinfo "Making sure that config.yaml is not uploaded to git"
   if ! grep "config/config.yaml" "${GITDIR}/dotfiles/.gitignore"; then
     tracecommand "echo \"config/config.yaml\" >> ${GITDIR}/dotfiles/.gitignore"
   fi
-  if [[ ${KEEP_SUDO} == false ]]; then
+  if [[ ${KEEPSUDO} == false ]]; then
     traceinfo "Removing passwordless sudo"
     tracecommand "sudo rm -rf /private/etc/sudoers.d/${LOGNAME}"
   fi
 }
 
 logstart
-tracedumpvar MAIN_DIR LOG_DIR LOG_FILE CONFIG_FILE VERBOSE GITHUBPROJECT GITHUBSUSER LASTNAME FIRSTNAME EMAIL GITDIR HOSTNAME KEEP_SUDO
+tracedumpvar RUNDIR LOGDIR LOGFILE VERBOSE GITPROJECT GITUSER LASTNAME FIRSTNAME EMAIL GITDIR HOSTNAME KEEPSUDO
 backup
 passwordlesssudo
 dotfiles

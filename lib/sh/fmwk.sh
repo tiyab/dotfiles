@@ -75,9 +75,9 @@ function tracecrit() {
 }
 function tracecommand() {
   VERBOSE_LVL=${DEBUG}
+  trace "${CGRAY}" "DEBUG" "${1}"
   # shellcheck disable=2091
   $(${1}) > /dev/null 2>&1
-  trace "${CGRAY}" "DEBUG" "${1}"
 }
 function tracedebug() {
   VERBOSE_LVL=${DEBUG}
