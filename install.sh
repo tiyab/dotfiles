@@ -94,15 +94,20 @@ function passwordlesssudo() {
 function getconfig() {
   separator
   tracenotify "● Getting configuration information"
-  if [[ "$(md5 -q "${CONFIG_DIR}"/config.yaml)" == "4b1a45003eab8ebf2fafaba5d18ec020" ]]; then
+  if [[ "$(md5 -q "${CONFIG_DIR}/config.yaml")" == "60f0249e152fbee0ac90a7c9208ba133" ]]; then
     traceerror "Please update ${CONFIG_DIR}/config.yaml file"
     exit 1
   fi
   if [[ -f ${CONFIG_DIR}/config.yaml && -s ${CONFIG_DIR}/config.yaml ]]; then
-    # // TODO
+    while IFS=': ' read -r key value; do
+      case $key in
+        '#'*) ;;
+        *) eval "$key"="${value}"
+      esac
+    done < "${CONFIG_DIR}/config.yaml"
     traceinfo "Setting variables"
   else
-    TraceError "Missing ${CONFIG_DIR}/config.yaml file or empty"
+    traceerror "Missing ${CONFIG_DIR}/config.yaml file or empty"
     exit 1
   fi
 }
@@ -126,7 +131,7 @@ function sshconfig() {
     traceinfo "Existing SSH keys detected, skipping SSH keys creation"
   else
     traceinfo "Generating new ssh keys"
-    tracedebug "ssh keygen -t rsa -C \"${githubuser}@${hostname}\" -q"
+    tracedebug "ssh keygen -t rsa -C \"${GITHUBUSER}@${HOSTNAME}\" -q"
     if [[ -f ${HOME}/.ssh/id_rsa && -f ${HOME}/.ssh/id_rsa.pub ]]; then
       tracesuccess "New ssh keys available in ${HOME}/.ssh"
     else
@@ -191,12 +196,12 @@ function gitconfig() {
   tracenotify "● GIT configuration"
   traceinfo "Setting up global .gitconfig"
   tracecommand "cp -a ${FILES_DIR}/gitconfig ${HOME}/.gitconfig"
-  tracecommand "sed -ie 's/GITHUBNAME/${firstname} ${lastname}/g' ${HOME}/.gitconfig"
-  tracecommand "sed -ie 's/GITHUBMAIL/${email}/g' ${HOME}/.gitconfig"
-  tracecommand "sed -ie 's/GITHUBUSER/${githubuser}/g' ${HOME}/.gitconfig"
+  tracecommand "sed -ie 's/GITHUBNAME/${FIRSTNAME} ${LASTNAME}/g' ${HOME}/.gitconfig"
+  tracecommand "sed -ie 's/GITHUBMAIL/${EMAIL}/g' ${HOME}/.gitconfig"
+  tracecommand "sed -ie 's/GITHUBUSER/${GITHUBUSER}/g' ${HOME}/.gitconfig"
 
   traceinfo "Setting up directory for Git projects"
-  tracecommand "mkdir -p ${gitdir}"
+  tracecommand "mkdir -p ${GITDIR}"
 }
 
 function zshconfig() {
@@ -432,10 +437,10 @@ function ossettings() {
   # --------------------------------------------------------------------------- #
   tracenotify "● Optional"
   traceinfo "Setting computer name"
-  tracecommand "sudo scutil --set ComputerName ${hostname}"
-  tracecommand "sudo scutil --set HostName ${hostname}"
-  tracecommand "sudo scutil --set LocalHostName ${hostname}"
-  tracecommand "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string ${hostname}"
+  tracecommand "sudo scutil --set ComputerName ${HOSTNAME}"
+  tracecommand "sudo scutil --set HostName ${HOSTNAME}"
+  tracecommand "sudo scutil --set LocalHostName ${HOSTNAME}"
+  tracecommand "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string ${HOSTNAME}"
 
   # traceinfo "Disabling smooth scrolling"
   # (Uncomment if you’re on an older Mac that messes up the animation)
@@ -1035,22 +1040,22 @@ function ossettings() {
 
 function cleanup() {
   traceinfo "Cleaning installation files"
-  traceinfo "Making sure that the project has been clone to ${gitdir}"
-  tracecommand "git clone git@github.com:${githubuser}/${githubproject}.git ${gitdir}"
+  traceinfo "Making sure that the project has been clone to ${GITDIR}"
+  tracecommand "git clone git@github.com:${GITHUBUSER}/${GITHUBPROJECT}.git ${GITDIR}"
   traceinfo "Saving modified config.yaml"
-  tracecommand "cp -a ${CONFIG_DIR}/config.yaml ${gitdir}/dotfiles/config/config.yaml"
+  tracecommand "cp -a ${CONFIG_DIR}/config.yaml ${GITDIR}/dotfiles/config/config.yaml"
   traceinfo "Making sure that config.yaml is not uploaded to git"
-  if ! grep "config/config.yaml" "${gitdir}/dotfiles/.gitignore"; then
-    tracecommand "echo \"config/config.yaml\" >> ${gitdir}/dotfiles/.gitignore"
+  if ! grep "config/config.yaml" "${GITDIR}/dotfiles/.gitignore"; then
+    tracecommand "echo \"config/config.yaml\" >> ${GITDIR}/dotfiles/.gitignore"
   fi
-  if [[ ${keep_sudo} == false ]]; then
+  if [[ ${KEEP_SUDO} == false ]]; then
     traceinfo "Removing passwordless sudo"
     tracecommand "sudo rm -rf /private/etc/sudoers.d/${LOGNAME}"
   fi
 }
 
 logstart
-tracedumpvar RUN_DIR LOG_DIR CONFIG_DIR FILES_DIR LIB_DIR BACKUP_DIR
+tracedumpvar MAIN_DIR LOG_DIR LOG_FILE CONFIG_FILE VERBOSE GITHUBPROJECT GITHUBSUSER LASTNAME FIRSTNAME EMAIL GITDIR HOSTNAME KEEP_SUDO
 backup
 passwordlesssudo
 dotfiles
@@ -1058,4 +1063,4 @@ ossettings
 cleanup
 logstop
 
-"${gitdir}"/dotfiles/cleanup.sh "${SCRIPT_DIR}" "${gitdir}"
+"${GITDIR}"/dotfiles/cleanup.sh "${SCRIPT_DIR}" "${GITDIR}"
