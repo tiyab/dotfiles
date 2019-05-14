@@ -5,4 +5,4 @@ FIRSTNAME: FIRSTNAME      # YOUR firstname
 EMAIL: EMAIL              # YOUR email address
 GITDIR: GITDIR            # path to where you usually clone your git project
 HOSTNAME: HOSTNAME        # desired hostname for the mMac
-KEEP_SUDO: "false"        # keep or not passwordless sudo after the install - false = remove, everything else = keep
+KEEPSUDO: "false"        # keep or not passwordless sudo after the install - false = remove, everything else = keep
