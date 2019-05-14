@@ -1,0 +1,10 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+# Thumbnails
+._*
+id_rsa*
+config/config.yaml
+log
+*.log
+backup

@@ -1,0 +1,15 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "PragmataPro Mono Liga",
+    "editor.fontSize": 14,
+    "editor.smoothScrolling": true,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "explorer.confirmDelete": false,
+    "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
+    "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontWeightBold": "normal",
+    "editor.fontLigatures": true,
+    "editor.tabSize": 2,
+    "explorer.confirmDragAndDrop": false
+}

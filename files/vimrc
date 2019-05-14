@@ -1,0 +1,124 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'   " https://github.com/VundleVim/Vundle.vim
+
+" Plugins list - https://vimawesome.com/
+Plugin 'aradunovic/perun.vim'       " https://github.com/aradunovic/perun.vim
+Plugin 'nanotech/jellybeans.vim'    " https://github.com/nanotech/jellybeans.vim
+Plugin 'vim-syntastic/syntastic'    " https://github.com/vim-syntastic/syntastic
+Plugin 'flazz/vim-colorschemes'     " https://github.com/flazz/vim-colorschemes
+Plugin 'itchyny/lightline.vim'      " https://github.com/itchyny/lightline.vim
+Plugin 'tpope/vim-surround'         " https://github.com/tpope/vim-surround
+Plugin 'tpope/vim-fugitive'         " https://github.com/tpope/vim-fugitive
+Plugin 'rodjek/vim-puppet'          " https://github.com/rodjek/vim-puppet
+Plugin 'godlygeek/tabular'          " https://github.com/godlygeek/tabular
+Plugin 'majutsushi/tagbar'          " https://github.com/majutsushi/tagbar
+Plugin 'conradirwin/vim-bracketed-paste' " https://github.com/conradirwin/vim-bracketed-paste
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+if !has('gui_running')
+    set t_Co=256
+endif
+
+" Colorscheme - preview available at http://vimcolors.com/
+" colorscheme perun
+colorscheme jellybeans
+if !exists("g:syntax_on")
+    syntax enable
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set UTF-8 encoding
+set enc=utf-8
+set fenc=utf-8
+set termencoding=utf-8
+set isk+=_,$,@,%,# " none of these should be word dividers, so make them not be
+
+" lightline configuration
+let g:lightline = { 'colorscheme': 'jellybeans', }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Files/Backups/Sessions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nobackup
+set nowb
+set noswapfile
+set directory=~/.vim/temp " directory for temp files
+set makeef=error.err " When using make, where should it dump the file
+set sessionoptions+=globals " What should be saved during sessions being saved
+set sessionoptions+=localoptions " What should be saved during sessions being saved
+set sessionoptions+=resize " What should be saved during sessions being saved
+set sessionoptions+=winpos " What should be saved during sessions being saved
+
+" Enable line numbers
+set number
+set scrolloff=3
+
+" Highlight current line
+set cursorline
+
+" Highlight searches
+set hlsearch
+
+" how the filename in the window titlebar.
+set title
+
+" Defines the clipboard name.
+set clipboard=unnamed
+
+" Show Trailing Whitespace
+match ErrorMsg '\s\+$'
+
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
+nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
+
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
+
+" Tabs configuration.
+set tabstop=4
+set shiftwidth=4
+set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
+set expandtab " no real tabs!
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_html_tidy_quiet_messages = { "level": "warnings" }
+let g:syntastic_html_tidy_ignore_errors = [ '<template> is not recognized!' ]
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_eslint_checker = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_enable_tslint_checker = 1
+let g:syntastic_typescript_checkers = ['tslint', 'tsc']
+let g:syntastic_enable_pug_checker = 1
+let g:syntastic_pug_checkers = ['jade','pug']
+
+" Yank text to the macOS clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
