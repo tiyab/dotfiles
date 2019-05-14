@@ -269,6 +269,7 @@ function vimconfig() {
 }
 
 function vscodeconfig() {
+  separator
   tracenotify "● VSCode configuration"
   traceinfo "VS Code installation"
   caskinstall visual-studio-code
@@ -303,6 +304,7 @@ function dotfiles() {
 }
 
 function ossettings() {
+  separator
   tracenotify "OS CONFIGURATION"
   traceinfo "Closing any system preferences to prevent issues with automated changes"
   # tracecommand doesn't work for the following command
