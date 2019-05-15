@@ -11,10 +11,12 @@ Bash only, no dependencies!
 # About
 > Note: Read me until the end before running the install script!
 
-This script purposes is to configure newly installed Mac with just the input of sudo password.
+This script purposes is to configure newly installed Mac with just the input of sudo password. It is idempotent too.
 
 It is using only bash command and is shellcheck proof.
 If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
+
+There is still few issues, when rerunning the script but they are not blocking (popup to ask to reinstall iterm2 themes for example).
 
 # Installation
 > Note: Please review the code before running it blindly
