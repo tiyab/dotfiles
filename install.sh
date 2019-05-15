@@ -62,14 +62,14 @@ function backup() {
   fi
   traceinfo "Backuping SSH keys"
   if [[ -d ${HOME}/.ssh ]]; then
-    tracecommand "cp -aR ${HOME}/.ssh ${BACKUPDIR}/dotfiles/ssh"
+    tracecommand "cp -aR ${HOME}/.ssh ${BACKUPDIR}/ssh"
   fi
   traceinfo "Backuping existing dotfiles"
   tracecommand "mkdir -p ${BACKUPDIR}/dotfiles"
   tracecommand "shopt -s dotglob"
   # The following command is failing with tracecommand so alternative
-  tracedebug "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUPDIR}/dotfiles/ +"
-  find "${HOME}" -type f -name '.*' -maxdepth 1 -exec cp {} "${BACKUPDIR}/dotfiles/" \;
+  tracedebug "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUPDIR}/ +"
+  find "${HOME}" -type f -name '.*' -maxdepth 1 -exec cp {} "${BACKUPDIR}/" \;
   tracecommand "shopt -u dotglob"
   tracesuccess "Backup done"
 }
