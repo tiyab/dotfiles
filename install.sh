@@ -1045,17 +1045,21 @@ function ossettings() {
 function cleanup() {
   traceinfo "Cleaning installation files"
   traceinfo "Making sure that the project has been clone to ${GITDIR}"
-  if [[ -z ${GITPROJECT} ]]; then
+  if [[ -n ${GITPROJECT} ]]; then
     tracecommand "git clone git@github.com:${GITUSER}/${GITPROJECT}.git ${GITDIR}"
+    traceinfo "Saving modified config.yaml to ${GITDIR}/${GITPROJECT}/config/"
+    tracecommand "cp -a ${CONFIGDIR}/config.yaml ${GITDIR}/${GITPROJECT}/config/config.yaml"
+    traceinfo "Making sure that config.yaml is not uploaded to git"
+    if [[ ! -f "${GITDIR}/${GITPROJECT}/.gitignore" ]]; then
+      tracecommand "touch ${GITDIR}/${GITPROJECT}/.gitignore"
+    fi
+    if ! grep "config/config.yaml" "${GITDIR}/${GITPROJECT}/.gitignore"; then
+      tracecommand "echo \"config/config.yaml\" >> ${GITDIR}/${GITPROJECT}/.gitignore"
+    fi
+    traceinfo "Keeping the log files"
+    tracecommand "cp -Ra ${LOGDIR} ${GITDIR}/${GITPROJECT}/"
   fi
-  traceinfo "Saving modified config.yaml"
-  tracecommand "cp -a ${CONFIGDIR}/config.yaml ${GITDIR}/${GITPROJECT}/config/config.yaml"
-  traceinfo "Making sure that config.yaml is not uploaded to git"
-  if ! grep "config/config.yaml" "${GITDIR}/${GITPROJECT}/.gitignore"; then
-    tracecommand "echo \"config/config.yaml\" >> ${GITDIR}/${GITPROJECT}/.gitignore"
-  fi
-  traceinfo "Keeping the log files"
-  tracecommand "cp -Ra ${LOGDIR} ${GITDIR}/${GITPROJECT}/"
+  
   if [[ ${KEEPSUDO} == false ]]; then
     traceinfo "Removing passwordless sudo"
     tracecommand "sudo rm -rf /private/etc/sudoers.d/${LOGNAME}"
