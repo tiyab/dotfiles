@@ -4,7 +4,7 @@
 
 # ╰[ ⁰﹏⁰ ]╯ - Dotfiles bot
 
-Almost unattended dotfiles for Mac
+Almost unattended dotfiles for Mac (gpg-suite installation still pop up a window :/)
 
 Bash only, no dependencies!
 
