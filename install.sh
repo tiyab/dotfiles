@@ -238,8 +238,10 @@ function zshconfig() {
     # and get the most recent version
   tracecommand "git clone --recursive https://github.com/sorin-ionescu/prezto.git ${HOME}/.zprezto"
   tracecommand "shopt -s extglob"
+  
+  tracedebug "find ${HOME}/.zprezto/runcoms -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
   # shellcheck disable=SC2154
-  tracecommand "find ${HOME}/.zprezto/runcoms -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
+  find "${HOME}/.zprezto/runcoms" -type f -name 'z*' -exec sh -c 'name=$(basename {$1}); ln -sf {$1} ${HOME}/.${name}' _ {} \;
   tracecommand "shopt -u extglob"
   tracesuccess "prezto for zsh has been setup"
 }
