@@ -6,9 +6,6 @@
 # LICENSE     : GNU GPLv3
 # --------------------------------------------------------------------------- #
 
-# //TODO: try to remove xcode part and see how it behaves
-# //TODO: manage exit on interruption (CTRL + C)
-
 RUNDIR=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 LOGDIR="${RUNDIR}/log"
 CONFIGDIR="${RUNDIR}/config"
@@ -70,7 +67,9 @@ function backup() {
   traceinfo "Backuping existing dotfiles"
   tracecommand "mkdir -p ${BACKUP_DIR}/dotfiles"
   tracecommand "shopt -s dotglob"
-  tracecommand "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ \\\+" # try to do \\;
+  # The following command is failing with tracecommand so alternative
+  tracedebug "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ +"
+  find "${HOME}" -type f -name '.*' -maxdepth 1 -exec cp {} "${BACKUP_DIR}/dotfiles/" \;
   tracecommand "shopt -u dotglob"
   tracesuccess "Backup done"
 }
