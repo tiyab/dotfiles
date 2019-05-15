@@ -1063,7 +1063,7 @@ function cleanup() {
   fi
 }
 
-logstart ${LOGDIR} ${LOGFILE}
+logstart "${LOGDIR}" "${LOGFILE}"
 getconfig
 tracedumpvar RUNDIR LOGDIR LOGFILE VERBOSE GITPROJECT GITUSER LASTNAME FIRSTNAME EMAIL GITDIR HOSTNAME KEEPSUDO
 backup
