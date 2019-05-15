@@ -249,6 +249,10 @@ function vimconfig() {
   tracenotify "● VIM installation"
   traceinfo "Vim installation"
   brewinstall vim
+  if [[ -d "${HOME}/.vim/bundle/Vundle.vim" ]]; then
+    traceinfo "Removing previous installation of vundle"
+    tracecommand "rm -rf ${HOME}/.vim/bundle/Vundle.vim"
+  fi
   traceinfo "Installing Vundle"
   if ! git clone https://github.com/VundleVim/Vundle.vim.git "${HOME}"/.vim/bundle/Vundle.vim; then
     traceerror "Failed to download Vundle"
@@ -910,7 +914,7 @@ function ossettings() {
   # tracecommand "defaults write com.apple.terminal StringEncodings -array 4"
 
   traceinfo "Use a modified version of the Solarized Dark theme by default in Terminal.app"
-  TERM_PROFILE='Solarized.Dark.xterm-256color'
+  TERM_PROFILE='Solarized.Dark.xterm-256colors'
   CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')"
   if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
     tracecommand "open ${FILESDIR}/terminal/${TERM_PROFILE}.terminal"
@@ -924,9 +928,9 @@ function ossettings() {
   tracecommand "defaults write com.apple.terminal FocusFollowsMouse -bool true"
   # tracecommand "defaults write org.x.X11 wm_ffm -bool true"
   traceinfo "Installing the Solarized Light theme for iTerm (opening file)"
-  tracecommand open "${FILESDIR}/terminal/Solarized.Light.itermcolors"
+  tracecommand "open ${FILESDIR}/terminal/Solarized.Light.itermcolors"
   traceinfo "Installing the Patched Solarized Dark theme for iTerm (opening file)"
-  tracecommand open "${FILESDIR}/terminal/Solarized.Dark.Patch.itermcolors"
+  tracecommand "open ${FILESDIR}/terminal/Solarized.Dark.Patch.itermcolors"
   traceinfo "Installing the Panda syntax theme for iTerm (opening file)"
   tracecommand "open ${FILESDIR}/terminal/panda.syntax.itermcolors"
 
@@ -960,7 +964,7 @@ function ossettings() {
 
   traceinfo "Disable local Time Machine backups"
   tracecommand "hash tmutil"
-  tracecommand "sudo tmutil disablelocal"
+  tracecommand "sudo tmutil disable"
 
   # --------------------------------------------------------------------------- #
   tracenotify "● Activity Monitor"
@@ -1070,11 +1074,12 @@ function cleanup() {
 
 logstart "${LOGDIR}" "${LOGFILE}"
 getconfig
-tracedumpvar RUNDIR LOGDIR LOGFILE VERBOSE GITPROJECT GITUSER LASTNAME FIRSTNAME EMAIL GITDIR HOSTNAME KEEPSUDO
+tracedumpvar RUNDIR LOGDIR LOGFILE VERBOSE GITDIR GITPROJECT GITUSER LASTNAME FIRSTNAME EMAIL HOSTNAME KEEPSUDO
 backup
 passwordlesssudo
 dotfiles
 ossettings
 if [[ "${GITDIR}/${GITPROJECT}" != "${RUNDIR}" ]]; then
-  "${GITDIR}"/dotfiles/cleanup.sh "${RUNDIR}" "${GITDIR}"
+  cleanup
+  tracecommand "${GITDIR}/${GITPROJECT}/cleanup.sh ${RUNDIR} ${GITDIR}"
 fi
