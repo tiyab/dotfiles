@@ -11,7 +11,7 @@ LOGDIR="${RUNDIR}/log"
 CONFIGDIR="${RUNDIR}/config"
 FILESDIR="${RUNDIR}/files"
 LIBDIR="${RUNDIR}/lib"
-BACKUP_DIR="${HOME}/$(date +"%Y%m%d%H%M%S")_dotfiles_backup"
+BACKUPDIR="${HOME}/$(date +"%Y%m%d%H%M%S")_dotfiles_backup"
 LOGFILE="${LOGDIR}/$(date +"%Y%m%d%H%M%S").${BASH_SOURCE##*/}.log"
 
 export LOGFILE
@@ -42,11 +42,11 @@ function backup() {
   separator
   tracenotify "● Configuring backup"
   traceinfo "Creating backup directory"
-  tracecommand "mkdir -p ${BACKUP_DIR}"
-  if [[ -d ${BACKUP_DIR} ]]; then
-    traceinfo "Backup directory: ${BACKUP_DIR}"
+  tracecommand "mkdir -p ${BACKUPDIR}"
+  if [[ -d ${BACKUPDIR} ]]; then
+    traceinfo "Backup directory: ${BACKUPDIR}"
   else
-    traceerror "Failed to create ${BACKUP_DIR}"
+    traceerror "Failed to create ${BACKUPDIR}"
     tracewarning "No backup directory detected"
     tracewarning "The script will automatically proceed in 10s"
     tracewarning "or Press any key to exit now"
@@ -56,20 +56,20 @@ function backup() {
     fi
   fi
   traceinfo "Backuping hosts file"
-  tracecommand "cp -a /etc/hosts ${BACKUP_DIR}"
-  if [[ -f ${BACKUP_DIR}/hosts && $(md5 -q /etc/hosts) == $(md5 -q "${BACKUP_DIR}"/hosts) ]]; then
+  tracecommand "cp -a /etc/hosts ${BACKUPDIR}"
+  if [[ -f ${BACKUPDIR}/hosts && $(md5 -q /etc/hosts) == $(md5 -q "${BACKUPDIR}"/hosts) ]]; then
     tracesuccess "/etc/hosts backup done"
   fi
   traceinfo "Backuping SSH keys"
   if [[ -d ${HOME}/.ssh ]]; then
-    tracecommand "cp -aR ${HOME}/.ssh ${BACKUP_DIR}/dotfiles/ssh"
+    tracecommand "cp -aR ${HOME}/.ssh ${BACKUPDIR}/dotfiles/ssh"
   fi
   traceinfo "Backuping existing dotfiles"
-  tracecommand "mkdir -p ${BACKUP_DIR}/dotfiles"
+  tracecommand "mkdir -p ${BACKUPDIR}/dotfiles"
   tracecommand "shopt -s dotglob"
   # The following command is failing with tracecommand so alternative
-  tracedebug "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ +"
-  find "${HOME}" -type f -name '.*' -maxdepth 1 -exec cp {} "${BACKUP_DIR}/dotfiles/" \;
+  tracedebug "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUPDIR}/dotfiles/ +"
+  find "${HOME}" -type f -name '.*' -maxdepth 1 -exec cp {} "${BACKUPDIR}/dotfiles/" \;
   tracecommand "shopt -u dotglob"
   tracesuccess "Backup done"
 }
@@ -119,7 +119,7 @@ function hostconfig() {
   tracenotify "● Hosts file configuration"
   traceinfo "Configuring /etc/hosts from someonewhocares.org"
   tracecommand "sudo curl -s -o test.hosts https://someonewhocares.org/hosts/hosts"
-  if [[ $(md5 -q /etc/hosts) != $(md5 -q "${BACKUP_DIR}/hosts") ]]; then
+  if [[ $(md5 -q /etc/hosts) != $(md5 -q "${BACKUPDIR}/hosts") ]]; then
     tracesuccess "/etc/hosts has been updated"
   else
     traceerror "Failed to retrieve last version of hosts file"
@@ -1076,7 +1076,7 @@ function cleanup() {
 
 logstart "${LOGDIR}" "${LOGFILE}"
 getconfig
-tracedumpvar RUNDIR LOGDIR LOGFILE VERBOSE GITDIR GITPROJECT GITUSER LASTNAME FIRSTNAME EMAIL HOSTNAME KEEPSUDO
+tracedumpvar RUNDIR LOGDIR LOGFILE VERBOSE BACKUPDIR GITDIR GITPROJECT GITUSER LASTNAME FIRSTNAME EMAIL HOSTNAME KEEPSUDO
 backup
 passwordlesssudo
 dotfiles
