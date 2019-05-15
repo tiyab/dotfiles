@@ -169,11 +169,17 @@ function brewconfig() {
     tracesuccess "Homebrew updated & upgraded"
   fi
 
-  tracenotify "● brew-cask installation"
+  tracenotify "● caskroom/cask installation"
   traceinfo "Installing caskroom/cask"
   tracedebug "brew tap caskroom/cask"
   if brew tap caskroom/cask; then
     tracesuccess "caskroom/cask installed"
+  fi
+  tracenotify "● cask-versions installation"
+  traceinfo "Installing cask-versions"
+  tracecommand "brew tap homebrew/cask-versions"
+  if brew tap homebrew/cask-versions; then
+    tracesuccess "homebrew/cask-versions installed"
   fi
 
   tracenotify "● Brew app installation"
