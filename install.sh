@@ -241,14 +241,6 @@ function zshconfig() {
   # shellcheck disable=SC2154
   tracecommand "find ${HOME}/.zprezto/runcoms -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
   tracecommand "shopt -u extglob"
-  if [[ -f ${FILESDIR}/zprofile ]]; then
-    traceinfo "Setting up custom .zprofile"
-    tracecommand "ln -sf ${FILESDIR}/zprofile $HOME/.zprofile"
-  fi
-  if [[ -f ${FILESDIR}/zshrc ]]; then
-    traceinfo "Setting up custom .zshrc"
-    tracecommand "ln -sf ${FILESDIR}/zshrc $HOME/.zshrc"
-  fi
   tracesuccess "prezto for zsh has been setup"
 }
 
@@ -257,16 +249,10 @@ function vimconfig() {
   tracenotify "● VIM installation"
   traceinfo "Vim installation"
   brewinstall vim
-  traceinfo "Setting up custom vimrc"
-  if [[ -f ${FILESDIR}/vimrc ]]; then
-    tracecommand "ln -sf ${SCRIPT_DIR}/files/vimrc $HOME/.vimrc"
-  fi
   traceinfo "Installing Vundle"
   if ! git clone https://github.com/VundleVim/Vundle.vim.git "${HOME}"/.vim/bundle/Vundle.vim; then
     traceerror "Failed to download Vundle"
   else
-    traceinfo "Installing VIM plugins"
-    tracecommand "vim +PluginInstall +qall"
     tracesuccess "Vundle has been installed"
   fi
 }
@@ -1061,6 +1047,21 @@ function cleanup() {
     tracecommand "cp -Ra ${LOGDIR} ${GITDIR}/${GITPROJECT}/"
   fi
   
+  # Since the project has been clone use the config file from there
+  if [[ -f ${GITDIR}/${GITPROJECT}/files/zprofile ]]; then
+    traceinfo "Setting up custom .zprofile"
+    tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/zprofile $HOME/.zprofile"
+  fi
+  if [[ -f ${GITDIR}/${GITPROJECT}/files/zshrc ]]; then
+    traceinfo "Setting up custom .zshrc"
+    tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/zshrc $HOME/.zshrc"
+  fi
+  traceinfo "Setting up custom vimrc"
+  if [[ -f ${FILESDIR}/vimrc ]]; then
+    tracecommand "ln -sf ${SCRIPT_DIR}/files/vimrc $HOME/.vimrc"
+  fi
+  traceinfo "Installing VIM plugins"
+  tracecommand "vim +PluginInstall +qall"
   if [[ ${KEEPSUDO} == false ]]; then
     traceinfo "Removing passwordless sudo"
     tracecommand "sudo rm -rf /private/etc/sudoers.d/${LOGNAME}"
