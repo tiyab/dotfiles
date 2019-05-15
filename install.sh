@@ -11,7 +11,7 @@ LOGDIR="${RUNDIR}/log"
 CONFIGDIR="${RUNDIR}/config"
 FILESDIR="${RUNDIR}/files"
 LIBDIR="${RUNDIR}/lib"
-BACKUP_DIR="${HOME}/dotfiles_backup"
+BACKUP_DIR="${HOME}/$(date +"%Y%m%d%H%M%S")_dotfiles_backup"
 LOGFILE="${LOGDIR}/$(date +"%Y%m%d%H%M%S").${BASH_SOURCE##*/}.log"
 
 export LOGFILE
