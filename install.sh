@@ -133,6 +133,7 @@ function sshconfig() {
     traceinfo "Existing SSH keys detected, skipping SSH keys creation"
   else
     traceinfo "Generating new ssh keys"
+    tracecommand "mkdir -p ${HOME}/.ssh"
     tracedebug "ssh-keygen -t rsa -C \"${GITUSER}@${HOSTNAME}\" -f ${HOME}/.ssh/id_rsa -q -N ''"
     if [[ -f ${HOME}/.ssh/id_rsa && -f ${HOME}/.ssh/id_rsa.pub ]]; then
       tracesuccess "New ssh keys available in ${HOME}/.ssh"
@@ -239,9 +240,9 @@ function zshconfig() {
   tracecommand "git clone --recursive https://github.com/sorin-ionescu/prezto.git ${HOME}/.zprezto"
   tracecommand "shopt -s extglob"
   
-  tracedebug "find ${HOME}/.zprezto/runcoms -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
   # shellcheck disable=SC2154
-  find "${HOME}/.zprezto/runcoms" -type f -name 'z*' -exec sh -c 'name=$(basename {$1}); ln -sf {$1} ${HOME}/.${name}' _ {} \;
+  tracedebug "find ${HOME}/.zprezto/runcoms -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
+  find "${HOME}/.zprezto/runcoms" -type f -name 'z*' -exec sh -c 'name=$(basename ${1}); ln -sf ${1} ${HOME}/.${name}' _ {} \;
   tracecommand "shopt -u extglob"
   tracesuccess "prezto for zsh has been setup"
 }
