@@ -236,7 +236,7 @@ function zshconfig() {
     tracecommand "rm -rf ${HOME}/.zprezto"
   fi
     # and get the most recent version
-  tracecommand "git clone --recursive https://github.com/sorin-ionescu/prezto.git \"${HOME}/.zprezto\""
+  tracecommand "git clone --recursive https://github.com/sorin-ionescu/prezto.git ${HOME}/.zprezto"
   tracecommand "shopt -s extglob"
   # shellcheck disable=SC2154
   tracecommand "find ${HOME}/.zprezto/runcoms -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
