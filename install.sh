@@ -119,7 +119,7 @@ function hostconfig() {
   tracenotify "● Hosts file configuration"
   traceinfo "Configuring /etc/hosts from someonewhocares.org"
   tracecommand "sudo curl -s -o test.hosts https://someonewhocares.org/hosts/hosts"
-  if [[ $(md5 -q /etc/hosts) != $(md5 -q /etc/hosts.bk) ]]; then
+  if [[ $(md5 -q /etc/hosts) != $(md5 -q "${BACKUP_DIR}/hosts") ]]; then
     tracesuccess "/etc/hosts has been updated"
   else
     traceerror "Failed to retrieve last version of hosts file"
