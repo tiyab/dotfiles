@@ -1077,4 +1077,4 @@ if [[ "${GITDIR}/${GITPROJECT}" != "${RUNDIR}" ]]; then
   cleanup
 fi
 
-"${GITDIR}"/dotfiles/cleanup.sh "${SCRIPT_DIR}" "${GITDIR}"
+"${GITDIR}"/dotfiles/cleanup.sh "${RUNDIR}" "${GITDIR}"
