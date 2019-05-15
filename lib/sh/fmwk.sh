@@ -114,3 +114,9 @@ function logstop() {
     unset PIPE_OPEN
   fi
 }
+
+function die() {
+  tracecrit "Script has been interrupted"
+  logstop
+  exit 1
+}
