@@ -12,10 +12,12 @@ function fontinstall(){
 }
 
 function caskinstall(){
-  if brew cask info "${1}"; then
-    if ! brew cask list "${1}"; then
+  if brew cask info "${1}" > /dev/null 2>&1; then
+    if ! brew cask list "${1}" > /dev/null 2>&1; then
       tracecommand "brew cask install ${1}"
       tracesuccess "cask ${1} installed"
+    else
+      traceinfo "cask ${1} already installed"
     fi
   else
     traceerror "cask ${1} not available"
@@ -23,10 +25,12 @@ function caskinstall(){
 }
 
 function brewinstall(){
-  if brew info "${1}"; then
-    if ! brew list "${1}"; then
+  if brew info "${1}" > /dev/null 2>&1; then
+    if ! brew list "${1}" > /dev/null 2>&1; then
       tracecommand "brew install ${1}"
       tracesuccess "formula ${1} installed"
+    else
+      traceinfo "formula ${1} already installed"
     fi
   else
     traceerror "formula ${1} not available"
