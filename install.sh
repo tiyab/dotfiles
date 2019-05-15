@@ -1076,6 +1076,5 @@ ossettings
 if [[ "${GITDIR}/${GITPROJECT}" != "${RUNDIR}" ]]; then
   cleanup
 fi
-logstop
 
 "${GITDIR}"/dotfiles/cleanup.sh "${SCRIPT_DIR}" "${GITDIR}"

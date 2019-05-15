@@ -13,6 +13,7 @@ source "${LIBDIR}/sh/fmwk.sh"
 
 traceinfo "Deleting directory ${1} since it has been copied to ${2}"
 tracecommand "rm -rf ${1}"
-tracesuccess "Everything is done, rebooting in 10sec"
-tracecommand "sleep 10"
-tracecommand "sudo reboot"
+tracesuccess "Everything is done, rebooting in 5 seconds"
+tracecommand "sudo shutdown -r +5"
+
+logstop
