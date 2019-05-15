@@ -1046,7 +1046,7 @@ function cleanup() {
   traceinfo "Cleaning installation files"
   traceinfo "Making sure that the project has been clone to ${GITDIR}"
   if [[ -n ${GITPROJECT} ]]; then
-    tracecommand "git clone git@github.com:${GITUSER}/${GITPROJECT}.git ${GITDIR}"
+    tracecommand "git clone https://github.com/${GITUSER}/${GITPROJECT}.git ${GITDIR}/${GITPROJECT}"
     traceinfo "Saving modified config.yaml to ${GITDIR}/${GITPROJECT}/config/"
     tracecommand "cp -a ${CONFIGDIR}/config.yaml ${GITDIR}/${GITPROJECT}/config/config.yaml"
     traceinfo "Making sure that config.yaml is not uploaded to git"
