@@ -182,6 +182,9 @@ function brewconfig() {
     tracesuccess "homebrew/cask-versions installed"
   fi
 
+  tracenotify "● FONTCONFIG installation"
+  tracecommand "brew tap caskroom/fonts"
+
   tracenotify "● Brew app installation"
   while IFS= read -r brew; do
     brewinstall "${brew}"
@@ -247,14 +250,6 @@ function zshconfig() {
     tracecommand "ln -sf ${FILESDIR}/zshrc $HOME/.zshrc"
   fi
   tracesuccess "prezto for zsh has been setup"
-}
-
-function fontconfig() {
-  separator
-  # need fontconfig to install/build fonts
-  tracenotify "● FONTCONFIG installation"
-  tracecommand "brew tap caskroom/fonts"
-  brewinstall fontconfig
 }
 
 function vimconfig() {
