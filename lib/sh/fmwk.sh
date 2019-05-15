@@ -90,16 +90,16 @@ function tracedumpvar() {
 }
 
 function logstart() {
-  mkdir -p "${LOG_DIR}"
-  touch "${LOG_FILE}"
-  pipe="/tmp/${LOG_FILE##*/}.pipe"
-  mkfifo -m 700 "${pipe}"
+  tracecommand "mkdir -p ${1}"
+  tracecommand "touch ${2}"
+  pipe="/tmp/${2##*/}.pipe"
+  tracecommand "mkfifo -m 700 ${pipe}"
   exec 3>&1
-  tee "${LOG_FILE}" < "$pipe" >&1 &
+  tee "${2}" < "$pipe" >&1 &
   teepid=$!
   exec 1>"${pipe}"
   PIPE_OPEN=1
-  tracesilent "Logging to ${LOG_FILE}"
+  tracesilent "Logging to ${2}"
 }
 
 function logstop() {
@@ -110,7 +110,7 @@ function logstop() {
       sleep 1
       kill $teepid
     fi
-    rm -f "${pipe}"
+    tracecommand "rm -f ${pipe}"
     unset PIPE_OPEN
   fi
 }

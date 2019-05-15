@@ -70,7 +70,7 @@ function backup() {
   traceinfo "Backuping existing dotfiles"
   tracecommand "mkdir -p ${BACKUP_DIR}/dotfiles"
   tracecommand "shopt -s dotglob"
-  tracecommand "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ +" # try to do \\;
+  tracecommand "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ \\\+" # try to do \\;
   tracecommand "shopt -u dotglob"
   tracesuccess "Backup done"
 }
@@ -1063,7 +1063,7 @@ function cleanup() {
   fi
 }
 
-logstart
+logstart ${LOGDIR} ${LOGFILE}
 getconfig
 tracedumpvar RUNDIR LOGDIR LOGFILE VERBOSE GITPROJECT GITUSER LASTNAME FIRSTNAME EMAIL GITDIR HOSTNAME KEEPSUDO
 backup
