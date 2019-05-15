@@ -363,7 +363,7 @@ function ossettings() {
   tracecommand "sudo systemsetup -setremoteappleevents off"
 
   traceinfo "Disabling remote login"
-  tracecommand "sudo systemsetup -setremotelogin off"
+  tracecommand "sudo systemsetup -setremotelogin -f off"
 
   traceinfo "Disabling wake-on modem"
   tracecommand "sudo systemsetup -setwakeonmodem off"
