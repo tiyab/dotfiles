@@ -1076,7 +1076,5 @@ passwordlesssudo
 dotfiles
 ossettings
 if [[ "${GITDIR}/${GITPROJECT}" != "${RUNDIR}" ]]; then
-  cleanup
+  "${GITDIR}"/dotfiles/cleanup.sh "${RUNDIR}" "${GITDIR}"
 fi
-
-"${GITDIR}"/dotfiles/cleanup.sh "${RUNDIR}" "${GITDIR}"
