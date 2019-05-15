@@ -133,7 +133,7 @@ function sshconfig() {
     traceinfo "Existing SSH keys detected, skipping SSH keys creation"
   else
     traceinfo "Generating new ssh keys"
-    tracedebug "ssh keygen -t rsa -C \"${GITUSER}@${HOSTNAME}\" -q"
+    tracedebug "ssh-keygen -t rsa -C \"${GITUSER}@${HOSTNAME}\" -f ${HOME}/.ssh/id_rsa -q -N ''"
     if [[ -f ${HOME}/.ssh/id_rsa && -f ${HOME}/.ssh/id_rsa.pub ]]; then
       tracesuccess "New ssh keys available in ${HOME}/.ssh"
     else
