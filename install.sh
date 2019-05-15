@@ -8,9 +8,6 @@
 
 # //TODO: try to remove xcode part and see how it behaves
 # //TODO: manage exit on interruption (CTRL + C)
-# //TODO: send log file to email
-# //TODO: how to manage file if script is rerun from ~/Git/Dotfiles?
-
 
 RUNDIR=$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 LOGDIR="${RUNDIR}/log"
@@ -42,6 +39,8 @@ while getopts ":SVD" opt; do
   esac
 done
 
+trap die SIGINT SIGQUIT SIGTSTP
+
 function backup() {
   separator
   tracenotify "● Configuring backup"
@@ -71,7 +70,7 @@ function backup() {
   traceinfo "Backuping existing dotfiles"
   tracecommand "mkdir -p ${BACKUP_DIR}/dotfiles"
   tracecommand "shopt -s dotglob"
-  tracecommand "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ \;" # try to do \\;
+  tracecommand "find ${HOME} -type f -name '.*' -maxdepth 1 -exec cp {} ${BACKUP_DIR}/dotfiles/ +" # try to do \\;
   tracecommand "shopt -u dotglob"
   tracesuccess "Backup done"
 }
@@ -297,7 +296,7 @@ function dotfiles() {
   tracenotify "DOTFILES CONFIGURATION"
   hostconfig
   sshconfig
-  xcodeconfig
+  # xcodeconfig
   brewconfig
   gitconfig
   zshconfig
@@ -1046,17 +1045,18 @@ function ossettings() {
 
 function cleanup() {
   traceinfo "Cleaning installation files"
-  # if [[ ${GITDIR}/${GITPROJECT} != ${RUNDIR} ]]
   traceinfo "Making sure that the project has been clone to ${GITDIR}"
   if [[ -z ${GITPROJECT} ]]; then
     tracecommand "git clone git@github.com:${GITUSER}/${GITPROJECT}.git ${GITDIR}"
   fi
   traceinfo "Saving modified config.yaml"
-  tracecommand "cp -a ${CONFIGDIR}/config.yaml ${GITDIR}/dotfiles/config/config.yaml"
+  tracecommand "cp -a ${CONFIGDIR}/config.yaml ${GITDIR}/${GITPROJECT}/config/config.yaml"
   traceinfo "Making sure that config.yaml is not uploaded to git"
-  if ! grep "config/config.yaml" "${GITDIR}/dotfiles/.gitignore"; then
-    tracecommand "echo \"config/config.yaml\" >> ${GITDIR}/dotfiles/.gitignore"
+  if ! grep "config/config.yaml" "${GITDIR}/${GITPROJECT}/.gitignore"; then
+    tracecommand "echo \"config/config.yaml\" >> ${GITDIR}/${GITPROJECT}/.gitignore"
   fi
+  traceinfo "Keeping the log files"
+  tracecommand "cp -Ra ${LOGDIR} ${GITDIR}/${GITPROJECT}/"
   if [[ ${KEEPSUDO} == false ]]; then
     traceinfo "Removing passwordless sudo"
     tracecommand "sudo rm -rf /private/etc/sudoers.d/${LOGNAME}"
@@ -1070,7 +1070,9 @@ backup
 passwordlesssudo
 dotfiles
 ossettings
-cleanup
+if [[ "${GITDIR}/${GITPROJECT}" != "${RUNDIR}" ]]; then
+  cleanup
+fi
 logstop
 
 "${GITDIR}"/dotfiles/cleanup.sh "${SCRIPT_DIR}" "${GITDIR}"
