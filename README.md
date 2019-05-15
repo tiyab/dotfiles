@@ -13,7 +13,7 @@ Bash only, no dependencies!
 
 This script purposes is to configure newly installed Mac with just the input of sudo password.
 
-It is using only bash command and shellcheck proof.
+It is using only bash command and is shellcheck proof.
 If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
 # Installation
@@ -30,23 +30,25 @@ cd dotfiles-master/
 
 Create the `config/config.yaml` file prior running the script.
 ```yaml
-# name of YOUR dotfiles project
 GITPROJECT: GITPROJECT
-# name of YOUR github user
 GITUSER: GITHUBUSER
-# YOUR lastname
 LASTNAME: LASTNAME
-# YOUR firstname
 FIRSTNAME: FIRSTNAME
-# YOUR email address
 EMAIL: EMAIL
-# path to where you usually clone your git project
 GITDIR: GITDIR
-# desired hostname for the mMac
 HOSTNAME: HOSTNAME
-# keep or not passwordless sudo after the install - false = remove, everything else = keep
 KEEPSUDO: "false"
 ```
+
+### `config.yaml` explained
+- `GITPROJECT`: if you have clone this dotfiles project to your own git
+- `GITUSER`: user name used for github and configured in `~/.gitconfig` and for the SSH key creation
+- `LASTNAME`: lastname used for github and configured in `~/.gitconfig`
+- `FIRSTNAME`: firstname used for github and configured in `~/.gitconfig`
+- `EMAIL`: email used for github and configured in `~/.gitconfig`
+- `GITDIR`: Directory to git clone projects, example `$HOME/Git`
+- `HOSTNAME`: Desired hostname for the machine
+- `KEEPSUDO`: keep or not passwordless sudo after the install - false = remove, everything else = keep
 
 Once done, execute the `install.sh` script
 ```shell
@@ -101,9 +103,7 @@ Same list as [atomantic dotfiles project](https://github.com/atomantic/dotfiles)
 
 ### Prompt Driven Configuration
 The following will only happen if you agree on the prompt
-- install a gitshots script to take a photo using your camera on every git commit (these go in as a post-commit hook to your .git_template)
 - overwrite your /etc/hosts file with a copy from someonewhocares.org (see ./configs/hosts for the file that will be used)
-- replace the system wallpaper with `img/wallpaper.jpg`
 
 ### SSD-specific tweaks  
 - Disable local Time Machine snapshots
