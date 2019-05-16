@@ -196,6 +196,7 @@ The following will only happen if you agree on the prompt
 
 ### Dock & Dashboard
 - Enable highlight hover effect for the grid view of a stack (Dock)
+- Position the dock to the left of the screen
 - Set the icon size of Dock items to 36 pixels
 - Change minimize/maximize window effect to scale
 - Minimize windows into their application’s icon
