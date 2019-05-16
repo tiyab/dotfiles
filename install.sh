@@ -515,7 +515,7 @@ function ossettings() {
     "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
   traceinfo "Setting highlight color to yellow (from Monokai Pro)"
-  tracecommand "defaults write NSGlobalDomain AppleHighlightColor -string '251 219 100'"
+  tracecommand "defaults write NSGlobalDomain AppleHighlightColor -string '1 0.937255 0.690196'"
 
   traceinfo "Setting sidebar icon size to small"
   tracecommand "defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1"
