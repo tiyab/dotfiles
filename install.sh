@@ -480,6 +480,9 @@ function ossettings() {
   traceinfo "Add a spacer to the right side of the Dock (where the Trash is)"
   tracecommand "defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type=\"spacer-tile\";}'"
 
+  traceinfo "Positionning dock to the left"
+  tracecommand "defaults write com.apple.dock orientation -string left"
+
   # --------------------------------------------------------------------------- #
   tracenotify "● Standard System Changes"
   # --------------------------------------------------------------------------- #
