@@ -489,6 +489,9 @@ function ossettings() {
   # traceinfo "Setting boot in verbose mode (not MacOS GUI mode)"
   # tracecommand "sudo nvram boot-args=\"-v\""
 
+  traceinfo "Settings Insterface style to Dark"
+  tracecommand "defaults write AppleInterfaceStyle Dark"
+
   traceinfo "Activating 'locate' command"
   tracecommand "sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist"
 
@@ -514,7 +517,7 @@ function ossettings() {
     "/System/Library/CoreServices/Menu Extras/Battery.menu" \
     "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
-  traceinfo "Setting highlight color to yellow (from Monokai Pro)"
+  traceinfo "Setting highlight color to yellow"
   tracecommand "defaults write NSGlobalDomain AppleHighlightColor -string '1 0.937255 0.690196'"
 
   traceinfo "Setting sidebar icon size to small"
