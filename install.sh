@@ -746,8 +746,8 @@ function ossettings() {
   traceinfo "Enable highlight hover effect for the grid view of a stack (Dock)"
   tracecommand "defaults write com.apple.dock mouse-over-hilite-stack -bool true"
 
-  traceinfo "Set the icon size of Dock items to 24 pixels"
-  tracecommand "defaults write com.apple.dock tilesize -int 24"
+  traceinfo "Set the icon size of Dock items to 16 pixels"
+  tracecommand "defaults write com.apple.dock tilesize -int 16"
 
   traceinfo "Change minimize/maximize window effect to scale"
   tracecommand "defaults write com.apple.dock mineffect -string 'scale'"
