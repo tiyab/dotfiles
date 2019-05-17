@@ -50,7 +50,7 @@ KEEPSUDO: "false"
 - `EMAIL`: email used for github and configured in `~/.gitconfig`
 - `GITDIR`: Directory to git clone projects, example `$HOME/Git`
 - `HOSTNAME`: Desired hostname for the machine
-- `KEEPSUDO`: keep or not passwordless sudo after the install - false = remove, everything else = keep
+- `KEEPSUDO`: keep or not passwordless sudo after the install - "false" = remove, everything else = keep. Need to be a STRING
 
 Once done, execute the `install.sh` script
 ```shell
