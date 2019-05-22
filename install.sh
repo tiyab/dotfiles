@@ -1072,8 +1072,8 @@ function cleanup() {
     tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/zshrc $HOME/.zshrc"
   fi
   traceinfo "Setting up custom vimrc"
-  if [[ -f ${FILESDIR}/vimrc ]]; then
-    tracecommand "ln -sf ${SCRIPT_DIR}/files/vimrc $HOME/.vimrc"
+  if [[ -f ${GITDIR}/${GITPROJECT}/files/vimrc ]]; then
+    tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/files/vimrc $HOME/.vimrc"
   fi
   traceinfo "Installing VIM plugins"
   tracecommand "vim +PluginInstall +qall"
