@@ -92,6 +92,9 @@ autocmd FileAppendPre   * :call TrimWhiteSpace()
 autocmd FilterWritePre  * :call TrimWhiteSpace()
 autocmd BufWritePre     * :call TrimWhiteSpace()
 
+" Make sure backspace is working
+set backspace=indent,eol,start
+
 " Tabs configuration.
 set tabstop=4
 set shiftwidth=4
