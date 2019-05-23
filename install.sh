@@ -1071,6 +1071,10 @@ function cleanup() {
     traceinfo "Setting up custom .zshrc"
     tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/zshrc $HOME/.zshrc"
   fi
+  if [[ -f ${GITDIR}/${GITPROJECT}/files/zpreztorc ]]; then
+    traceinfo "Setting up custom .zshrc"
+    tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/zpreztorc $HOME/.zpreztoc"
+  fi
   traceinfo "Setting up custom vimrc"
   if [[ -f ${GITDIR}/${GITPROJECT}/files/vimrc ]]; then
     tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/files/vimrc $HOME/.vimrc"
