@@ -34,7 +34,7 @@ endif
 " colorscheme perun
 colorscheme jellybeans
 "let base16colorspace=256 " Access colors present in 256 colorspace
-"colorscheme base16-default-dark
+"colorscheme base16_default-dark
 if !exists("g:syntax_on")
     syntax enable
 endif
