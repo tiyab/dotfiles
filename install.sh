@@ -237,8 +237,9 @@ function zshconfig() {
   fi
     # and get the most recent version
   tracecommand "git clone --recursive https://github.com/sorin-ionescu/prezto.git ${HOME}/.zprezto"
+
+  # Keep this bit if no custom zshrc zprofile
   tracecommand "shopt -s extglob"
-  
   # shellcheck disable=SC2154
   tracedebug "find ${HOME}/.zprezto/runcoms -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
   find "${HOME}/.zprezto/runcoms" -type f -name 'z*' -exec sh -c 'name=$(basename ${1}); ln -sf ${1} ${HOME}/.${name}' _ {} \;
@@ -1063,18 +1064,19 @@ function cleanup() {
   fi
   
   # Since the project has been clone use the config file from there
-  if [[ -f ${GITDIR}/${GITPROJECT}/files/zprofile ]]; then
-    traceinfo "Setting up custom .zprofile"
-    tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/zprofile $HOME/.zprofile"
-  fi
-  if [[ -f ${GITDIR}/${GITPROJECT}/files/zshrc ]]; then
-    traceinfo "Setting up custom .zshrc"
-    tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/zshrc $HOME/.zshrc"
-  fi
-  if [[ -f ${GITDIR}/${GITPROJECT}/files/zpreztorc ]]; then
-    traceinfo "Setting up custom .zshrc"
-    tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/zpreztorc $HOME/.zpreztoc"
-  fi
+  
+  tracecommand "shopt -s extglob"
+  # shellcheck disable=SC2154
+  tracedebug "find ${GITDIR}/${GITPROJECT}/files/zsh/ -type f -name 'z*' -exec sh -c 'name=$(basename {}); ln -sf {} ${HOME}/.${name}' _ {} \;"
+  find "${GITDIR}/${GITPROJECT}/files/zsh/" -type f -name 'z*' -exec sh -c 'name=$(basename ${1}); ln -sf ${1} ${HOME}/.${name}' _ {} \;
+  tracecommand "shopt -u extglob"
+  tracesuccess "prezto for zsh has been setup"
+
+  traceommand "ln -sfF ${GITDIR}/${GITPROJECT}/files/zsh/.zsh $HOME/.zsh"
+
+  # Customize colorscheme
+  tracecommand "_base16 \"${HOME}/base16-shell/scripts/base16-default-dark.sh\" default-dark"
+
   traceinfo "Setting up custom vimrc"
   if [[ -f ${GITDIR}/${GITPROJECT}/files/vimrc ]]; then
     tracecommand "ln -sf ${GITDIR}/${GITPROJECT}/files/files/vimrc $HOME/.vimrc"

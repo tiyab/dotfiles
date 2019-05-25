@@ -1,0 +1,85 @@
+#
+# Command aliases
+#
+
+alias -- -='cd -'
+alias ....='cd ../..'
+alias :e=vim
+alias cd..='cd ..'
+alias cdtmp='cd $(mktemp -d $TMPDIR/$USER-cdtmp-XXXXXX)'
+alias clip='nc -U ~/.clipper.sock'
+alias d='hash -d'
+alias f='find . -name'
+alias g=git
+alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
+alias h=history
+alias j=jump
+alias l='ls -F'
+alias ll='ls -lF'
+alias la='ls -laF'
+alias o='git oneline'
+alias p='git patch'
+#alias prettyjson='python -m json.tool'
+alias oo='git oneline -10'
+alias s=ssh
+alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
+alias v=vim
+alias dl='cd $HOME/Downloads'
+alias dt='cd $HOME/Desktop'
+
+if [[ -d $HOME/Dropbox ]]; then
+  alias d='cd ~/Dropbox'
+fi
+
+# mkdir tree
+alias mkdir='mkdir -p'
+
+# Human readable df & du
+alias df='df -h'
+alias du='du -h -d 2'
+
+# CP always recursive, keep permissions and verbose
+alias cp='cp -Rva'
+alias mv='cp -v'
+
+# Use trash instead of rm (if trash is installed)
+if command -v trash &> /dev/null; then
+  alias rm='trash'
+fi
+
+if command -v nvim &> /dev/null; then
+  alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
+fi
+
+#
+# Suffix aliases
+# (eg. "foo.md" to open Markdown files in "Marked 2.app")
+#
+alias -s md='open -a "Marked 2.app"'
+
+#
+# Global aliases
+# (work at any position within the command line)
+#
+
+# Mnemonic: "[C]lip"
+alias -g C="|clip"
+
+# Mnemonic: "[G]rep"
+alias -g G="|grep"
+
+# Mnemonic: "[H]ead"
+alias -g H="|head"
+
+# Pretty-print JSON.
+# Mnemonic: "[J]SON"
+alias -g J="|python -m json.tool"
+
+# Mnemonic: "[L]ess"
+alias -g L="|less"
+
+# Mnemonic: "[R]eset"
+alias -g R=";clear;test -n "$TMUX" && tmux clear-history;"
+
+# Mnemonic: "[W]c"
+alias -g W="|wc -l"
