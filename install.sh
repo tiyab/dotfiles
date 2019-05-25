@@ -493,8 +493,10 @@ function ossettings() {
   traceinfo "Settings Insterface style to Dark"
   tracecommand "defaults write 'Apple Global Domain' AppleInterfaceStyle Dark"
 
-  traceinfo "Activating 'locate' command"
-  tracecommand "sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist"
+  if [[ ! -f /var/db/locate.database ]]; then
+    traceinfo "Activating 'locate' command"
+    tracecommand "sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist"
+  fi
 
   traceinfo "Setting standby delay to 24 hours (default is 1 hour)"
   tracecommand "sudo pmset -a standbydelay 86400"
