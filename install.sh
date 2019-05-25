@@ -1047,10 +1047,10 @@ function ossettings() {
   tracesuccess "DONE"
 }
 
-function cleanup() {
+function wrapup() {
   traceinfo "Cleaning installation files"
   traceinfo "Making sure that the project has been clone to ${GITDIR}"
-  if [[ -n ${GITPROJECT} ]]; then
+  if [[ -n ${GITPROJECT} && ! -d ${GITDIR}/${GITPROJECT} ]]; then
     tracecommand "git clone https://github.com/${GITUSER}/${GITPROJECT}.git ${GITDIR}/${GITPROJECT}"
     traceinfo "Saving modified config.yaml to ${GITDIR}/${GITPROJECT}/config/"
     tracecommand "cp -a ${CONFIGDIR}/config.yaml ${GITDIR}/${GITPROJECT}/config/config.yaml"
@@ -1099,6 +1099,6 @@ passwordlesssudo
 dotfiles
 ossettings
 if [[ "${GITDIR}/${GITPROJECT}" != "${RUNDIR}" ]]; then
-  cleanup
+  wrapup
   tracecommand "${GITDIR}/${GITPROJECT}/cleanup.sh ${RUNDIR} ${GITDIR}"
 fi
