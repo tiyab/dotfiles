@@ -40,7 +40,7 @@ alias du='du -h -d 2'
 
 # CP always recursive, keep permissions and verbose
 alias cp='cp -Rva'
-alias mv='cp -v'
+alias mv='mv -v'
 
 # Use trash instead of rm (if trash is installed)
 if command -v trash &> /dev/null; then
