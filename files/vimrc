@@ -31,10 +31,10 @@ if !has('gui_running')
 endif
 
 " Colorscheme - preview available at http://vimcolors.com/
-" colorscheme perun
+" Using jellybeans base16 is bugged
 colorscheme jellybeans
-"let base16colorspace=256 " Access colors present in 256 colorspace
-"colorscheme base16_default-dark
+" let base16colorspace=256 " Access colors present in 256 colorspace
+" colorscheme base16-default-dark
 if !exists("g:syntax_on")
     syntax enable
 endif
