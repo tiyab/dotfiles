@@ -4,7 +4,5 @@
 # Thumbnails
 ._*
 id_rsa*
-config/config.yaml
 log
 *.log
-backup

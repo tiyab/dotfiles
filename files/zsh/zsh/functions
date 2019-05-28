@@ -1,0 +1,79 @@
+# Until .agrc exists...
+# (https://github.com/ggreer/the_silver_searcher/pull/709)
+function ag() {
+  emulate -L zsh
+
+  # italic blue paths, pink line numbers, underlined purple matches
+  command ag --pager="less -iFMRSX" --color-path=34\;3 --color-line-number=35 --color-match=35\;1\;4 "$@"
+}
+
+# fd - "find directory"
+# Inspired by: https://github.com/junegunn/fzf/wiki/examples#changing-directory
+function fd() {
+  local DIR
+  DIR=$(bfs ${1:-.} -type d 2> /dev/null | sk --no-multi) && cd "$DIR"
+}
+
+# fh - "find [in] history"
+# Inspired by: https://github.com/junegunn/fzf/wiki/examples#command-history
+function fh() {
+  print -z $(fc -l 1 | sk --no-multi --tac | sed 's/ *[0-9]*\*\{0,1\} *//')
+}
+
+# Print headers, following redirects.
+# Based on: https://stackoverflow.com/a/10060342/2103996
+function headers() {
+  emulate -L zsh
+
+  if [ $# -ne 1 ]; then
+    echo "error: a host argument is required"
+    return 1
+  fi
+
+  local REMOTE=$1
+
+  curl -sSL -D - "$REMOTE" -o /dev/null
+}
+
+function history() {
+  emulate -L zsh
+
+  # This is a function because Zsh aliases can't take arguments.
+  fc -l 1
+}
+
+# Bounce the Dock icon, if iTerm does not have focus.
+function bounce() {
+  if [ -n "$TMUX" ]; then
+    print -Pn "\ePtmux;\e\e]1337;RequestAttention=1\a\e\\"
+  else
+    print -Pn "\e]1337;RequestAttention=1\a"
+  fi
+}
+
+# regmv = regex + mv (mv with regex parameter specification)
+#   example: regmv '/\.tif$/.tiff/' *
+#   replaces .tif with .tiff for all files in current dir
+#   must quote the regex otherwise "\." becomes "."
+# limitations: ? doesn't seem to work in the regex, nor *
+regmv() {
+  emulate -L zsh
+
+  if [ $# -lt 2 ]; then
+    echo "  Usage: regmv 'regex' file(s)"
+    echo "  Where:       'regex' should be of the format '/find/replace/'"
+    echo "Example: regmv '/\.tif\$/.tiff/' *"
+    echo "   Note: Must quote/escape the regex otherwise \"\.\" becomes \".\""
+    return 1
+  fi
+  local regex="$1"
+  shift
+  while [ -n "$1" ]
+  do
+    local newname=$(echo "$1" | sed "s${regex}g")
+    if [ "${newname}" != "$1" ]; then
+      mv -i -v "$1" "$newname"
+    fi
+    shift
+  done
+}
