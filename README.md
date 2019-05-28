@@ -8,8 +8,6 @@ Almost unattended dotfiles for Mac (gpg-suite installation still pop up a window
 
 Bash only, no dependencies!
 
-!! Small Warning !! There is still some minor issues that I am trying to fix
-
 # About
 > Note: Read me until the end before running the install script!
 
@@ -18,45 +16,14 @@ This script purposes is to configure newly installed Mac with just the input of 
 It is using only bash command and is shellcheck proof.
 If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
-There is still few issues, when rerunning the script but they are not blocking (popup to ask to reinstall iterm2 themes for example).
+V2 !! Yes already a V2 as I was not satisfied with the V1. Overall simplification (I think) and seperation of tasks. Implementation of Brewfile too!!
 
 # Installation
 > Note: Please review the code before running it blindly
 
 Open a Terminal and run the following commands:
 ```
-curl -LO https://github.com/tiyab/dotfiles/archive/master.zip
-unzip master.zip
-cd dotfiles-master/
-```
-
-> Note: It is really important to update this file!
-
-Create the `config/config.yaml` file prior running the script.
-```yaml
-GITPROJECT: GITPROJECT
-GITUSER: GITHUBUSER
-LASTNAME: LASTNAME
-FIRSTNAME: FIRSTNAME
-EMAIL: EMAIL
-GITDIR: GITDIR
-HOSTNAME: HOSTNAME
-KEEPSUDO: "false"
-```
-
-### `config.yaml` explained
-- `GITPROJECT`: if you have clone this dotfiles project to your own git
-- `GITUSER`: user name used for github and configured in `~/.gitconfig` and for the SSH key creation
-- `LASTNAME`: lastname used for github and configured in `~/.gitconfig`
-- `FIRSTNAME`: firstname used for github and configured in `~/.gitconfig`
-- `EMAIL`: email used for github and configured in `~/.gitconfig`
-- `GITDIR`: Directory to git clone projects, example `$HOME/Git`
-- `HOSTNAME`: Desired hostname for the machine
-- `KEEPSUDO`: keep or not passwordless sudo after the install - "false" = remove, everything else = keep. Need to be a STRING
-
-Once done, execute the `install.sh` script
-```shell
-./install.sh
+curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/v2/install.sh | bash
 ```
 
 A few options are available for installation:
@@ -68,42 +35,51 @@ A few options are available for installation:
 
 By default, it will run with NOTIFICATION, WARNING, ERRROR and SUCCESS.
 
-# What is done for you
+# Description
 
-## backup
-When this script is executed it will create the following backup directory: `$HOME/dotfiles_backup`.
-The following files will be backup if there is any:
-- /etc/hosts
-- $HOME/.ssh
-- $HOME/.*  <-- files only
+Most of the code is self explanatory.
+Function has the following naming convention: `object`_`action`_`specificity`
+for example: 
+- Getting sudo password => sudo_get_password
+- Setting defaul shell => shell_set_default
 
-## passwordless sudo
+## SUDO
 
-In order to execute the whole unattended, passwordless sudo need to be configured. You can choose to disable it once the script has been executed with the setting
-`KEEP_SUDO` in the `config/config.yaml` file.
+Require SUDO to execute the script and it is use the whole execution.
 
 ## `hosts` file
 
 A good machine is a machine with a good `/etc/hosts` file.
 Updated from [https://someonewhocares.org/hosts/hosts](https://someonewhocares.org/hosts/hosts)
 
-## ssh
+## SSH
 
-It will generate a new pair of SSH keys ready to be used.
+It will generate a new pair of SSH keys ready to be used if none exist.
 
-## Software Installation & configuration
-> Note: For the moment I don't need ruby and nvm so not installed.
+## Software Installation
 
-Most application installed during the process are available in `config/brew.yaml` and `config/cask.yaml`.
+Software are installed via [Homebrew](https://brew.sh/) and [Homebrew-Bundle](https://github.com/Homebrew/homebrew-bundle)
+Refer to [Brewfile](Brewfile) to see the list of installed applications.
 
-If an application need some configuration, it is then install just before its configuration. List of application is:
-- git
-- vim
-- vscode
-- zsh
+## Software customization
+
+### ZSH
+
+Usage of [prezto](https://github.com/sorin-ionescu/prezto)
+
+If there is no custom zsh configuration then prezto configuration is used.
+
+### VIM
+
+Usage of [Vundle](https://github.com/VundleVim/Vundle.vim)
+
+Vundle is installed only if VIM exist on the system which should be the case ^^
+
+### VScode
+
+Custom `settings.json` and `keybindings.json`
 
 ## OS configuration
-Same list as [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
 ### Prompt Driven Configuration
 The following will only happen if you agree on the prompt
