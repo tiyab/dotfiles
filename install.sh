@@ -942,7 +942,7 @@ function ossettings() {
   tracecommand "defaults write com.apple.terminal FocusFollowsMouse -bool true"
   # tracecommand "defaults write org.x.X11 wm_ffm -bool true"
   traceinfo "Installing the Base16 default dark theme for iTerm (opening file)"
-  if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default-dark'; then
+  if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default-dark' > /dev/null; then
     tracecommand "open ${FILESDIR}/terminal/base16-default.dark.itermcolors"
   fi
   traceinfo "Don’t display the annoying prompt when quitting iTerm"
