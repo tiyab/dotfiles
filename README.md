@@ -8,6 +8,8 @@ Almost unattended dotfiles for Mac (gpg-suite installation still pop up a window
 
 Bash only, no dependencies!
 
+!! Small Warning !! There is still some issue that I am trying to fix
+
 # About
 > Note: Read me until the end before running the install script!
 
