@@ -46,43 +46,45 @@ For example:
 - Setting default shell => `shell_set_default`
 - ...
 
-## SUDO
+## sudo
 
 Require SUDO to execute the script and it is use the whole execution.
 
-## `hosts` file
+## hosts file
 
 A good machine is a machine with a good `/etc/hosts` file.
 Updated from [https://someonewhocares.org/hosts/hosts](https://someonewhocares.org/hosts/hosts)
 
-## SSH
+## ssh
 
 It will generate a new pair of SSH keys ready to be used if none exist.
 
-## Software Installation
+## software installation
 
 Software are installed via [Homebrew](https://brew.sh/) and [Homebrew-Bundle](https://github.com/Homebrew/homebrew-bundle)
 Refer to [Brewfile](Brewfile) to see the list of installed applications.
 
-## Software customization
+## software customization
 
-### ZSH
+### zsh
 
 Usage of [prezto](https://github.com/sorin-ionescu/prezto)
 
 If there is no custom zsh configuration then prezto configuration is used.
 
-### VIM
+### vim
 
 Usage of [Vundle](https://github.com/VundleVim/Vundle.vim)
 
 Vundle is installed only if VIM exist on the system which should be the case ^^
 
-### VScode
+### vscode
 
 Custom `settings.json` and `keybindings.json`
 
-## OS configuration
+---
+
+# OS configuration
 
 ### SSD-specific tweaks  
 - Disable local Time Machine snapshots
