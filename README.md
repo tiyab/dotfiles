@@ -22,6 +22,7 @@ If it is reminding you of another dotfiles, that is normal. This is a copy AND r
 
 V2 !! Overall simplification (I think) and seperation of tasks. Implementation of a Brewfile too!!
 
+
 ---
 
 # Installation
@@ -266,7 +267,9 @@ Custom `settings.json` and `keybindings.json`
 - [StyleGuide](https://google.github.io/styleguide/shell.xml#Variable_Names)
 - [Log level](http://www.ludovicocaldara.net/dba/bash-tips-4-use-logging-levels/)
 - [Log file](http://www.ludovicocaldara.net/dba/bash-tips-5-output-logfile/)
-- [Root of everything](https://github.com/atomantic/dotfiles)
+- [Root of everything](https://github.com/HiDeoo)
+- [Root of v1](https://github.com/atomantic/dotfiles)
+- [Root of v2](https://github.com/sam-hosseini/dotfiles)
 - [Shields IO](https://shields.io/)
 
 # LICENSE

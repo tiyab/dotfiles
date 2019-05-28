@@ -58,7 +58,6 @@ function homebrew_install() {
 }
 
 function homebrew_install_brewfile() {
-  # Function to install needed tap/formulas/casks from a Brewfile
   traceinfo "Installing tap/formulas/casks from Brewfile"
   tracedebug "/usr/local/bin/brew bundle install --file=${BREWFILE}"
   if /usr/local/bin/brew bundle install --file="${BREWFILE}"; then
@@ -69,7 +68,6 @@ function homebrew_install_brewfile() {
 }
 
 function git_make_dir() {
-  # This is the directory where I put all my Git projects
   traceinfo "Git directory creation"
   tracecommand "mkdir -p ${GITDIR}"
 }
@@ -140,7 +138,6 @@ function hostsfile_update() {
 }
 
 function vim_install_vundle() {
-  # Function to install vundle package manager for vim
   traceinfo "Vundle installation"
   if command -v vim > /dev/null; then
     if [[ -d "${HOME}/.vim/bundle/Vundle.vim" ]]; then
