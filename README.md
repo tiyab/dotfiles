@@ -34,7 +34,8 @@ Function has the following naming convention: `object` _ `action` _ `specificity
 
 For example: 
 - Getting sudo password => `sudo_get_password`
-- Setting defaul shell => `shell_set_default`
+- Setting default shell => `shell_set_default`
+- ...
 
 ## SUDO
 
