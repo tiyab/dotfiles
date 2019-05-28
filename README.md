@@ -75,10 +75,6 @@ Custom `settings.json` and `keybindings.json`
 
 ## OS configuration
 
-### Prompt Driven Configuration
-The following will only happen if you agree on the prompt
-- overwrite your /etc/hosts file with a copy from someonewhocares.org (see ./configs/hosts for the file that will be used)
-
 ### SSD-specific tweaks  
 - Disable local Time Machine snapshots
 - Disable hibernation (speeds up entering sleep mode)
