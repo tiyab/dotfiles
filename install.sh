@@ -416,7 +416,7 @@ function ossettings() {
   # --------------------------------------------------------------------------- #
   tracenotify "● SSD specific tweaks"
   traceinfo "Disabling local Time Machine snapshots"
-  tracecommand "sudo tmutil disablelocal"
+  tracecommand "sudo tmutil disable local"
 
   traceinfo "Disabling hibernation (speeds up entering sleep mode)"
   tracecommand "sudo pmset -a hibernatemode 0"
@@ -477,9 +477,9 @@ function ossettings() {
   tracecommand "defaults write com.apple.dock showLaunchpadGestureEnabled -int 0"
 
   traceinfo "Add a spacer to the left side of the Dock (where the applications are)"
-  tracecommand "defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type=\"spacer-tile\";}'"
+  tracecommand "defaults write com.apple.dock persistent-apps -array-add '{tile-data=\"\"; tile-type=\"spacer-tile\";}'"
   traceinfo "Add a spacer to the right side of the Dock (where the Trash is)"
-  tracecommand "defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type=\"spacer-tile\";}'"
+  tracecommand "defaults write com.apple.dock persistent-others -array-add '{tile-data=\"\"; tile-type=\"spacer-tile\";}'"
 
   traceinfo "Positionning dock to the left"
   tracecommand "defaults write com.apple.dock orientation -string left"
@@ -490,7 +490,7 @@ function ossettings() {
   # traceinfo "Setting boot in verbose mode (not MacOS GUI mode)"
   # tracecommand "sudo nvram boot-args=\"-v\""
 
-  traceinfo "Settings Insterface style to Dark"
+  traceinfo "Settings Interface style to Dark"
   tracecommand "defaults write 'Apple Global Domain' AppleInterfaceStyle Dark"
 
   if [[ ! -f /var/db/locate.database ]]; then
@@ -521,7 +521,7 @@ function ossettings() {
     "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
   traceinfo "Setting highlight color to yellow (System Preferences > General > Highlight color)"
-  tracecommand "defaults write NSGlobalDomain AppleHighlightColor -string '1 0.937255 0.690196'"
+  tracecommand "defaults write NSGlobalDomain AppleHighlightColor -string '1 0.937255 0.690196 Yellow'"
 
   traceinfo "Setting Apple Accent color to yellow (System Preferences > General > Accent color)"
   tracecommand "defaults write NSGlobalDomain AppleAccentColor -int 2"
@@ -924,23 +924,6 @@ function ossettings() {
   # --------------------------------------------------------------------------- #
   tracenotify "● Terminal & iTerm2"
   # --------------------------------------------------------------------------- #
-  # traceinfo "Only use UTF-8 in Terminal.app"
-  # tracecommand "defaults write com.apple.terminal StringEncodings -array 4"
-
-  traceinfo "Use a modified version of the Solarized Dark theme by default in Terminal.app"
-  TERM_PROFILE='Solarized.Dark.xterm-256colors'
-  CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')"
-  if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-    tracecommand "open ${FILESDIR}/terminal/${TERM_PROFILE}.terminal"
-    sleep 1; # Wait a bit to make sure the theme is loaded
-    tracecommand "defaults write com.apple.terminal 'Default Window Settings' -string ${TERM_PROFILE}"
-    tracecommand "defaults write com.apple.terminal 'Startup Window Settings' -string ${TERM_PROFILE}"
-  fi;
-
-  traceinfo "Enable \"focus follows mouse\" for Terminal.app and all X11 apps"
-  # i.e. hover over a window and start `typing in it without clicking first
-  tracecommand "defaults write com.apple.terminal FocusFollowsMouse -bool true"
-  # tracecommand "defaults write org.x.X11 wm_ffm -bool true"
   traceinfo "Installing the Base16 default dark theme for iTerm (opening file)"
   if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default-dark' > /dev/null; then
     tracecommand "open ${FILESDIR}/terminal/base16-default.dark.itermcolors"
