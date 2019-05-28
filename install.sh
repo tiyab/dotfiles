@@ -941,18 +941,15 @@ function ossettings() {
   # i.e. hover over a window and start `typing in it without clicking first
   tracecommand "defaults write com.apple.terminal FocusFollowsMouse -bool true"
   # tracecommand "defaults write org.x.X11 wm_ffm -bool true"
-  traceinfo "Installing the Solarized Light theme for iTerm (opening file)"
-  tracecommand "open ${FILESDIR}/terminal/Solarized.Light.itermcolors"
-  traceinfo "Installing the Patched Solarized Dark theme for iTerm (opening file)"
-  tracecommand "open ${FILESDIR}/terminal/Solarized.Dark.Patch.itermcolors"
-  traceinfo "Installing the Panda syntax theme for iTerm (opening file)"
-  tracecommand "open ${FILESDIR}/terminal/panda.syntax.itermcolors"
-
+  traceinfo "Installing the Base16 default dark theme for iTerm (opening file)"
+  if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default-dark'; then
+    tracecommand "open ${FILESDIR}/terminal/base16-default.dark.itermcolors"
+  fi
   traceinfo "Don’t display the annoying prompt when quitting iTerm"
   tracecommand "defaults write com.googlecode.iterm2 PromptOnQuit -bool false"
   traceinfo "hide tab title bars"
-  tracecommand "defaults write com.googlecode.iterm2 HideTab -bool true"
-  traceinfo "set system-wide hotkey to show/hide iterm with ^\`"
+  # tracecommand "defaults write com.googlecode.iterm2 HideTab -bool true"
+  # traceinfo "set system-wide hotkey to show/hide iterm with ^\`"
   tracecommand "defaults write com.googlecode.iterm2 Hotkey -bool true"
   traceinfo "hide pane titles in split panes"
   tracecommand "defaults write com.googlecode.iterm2 ShowPaneTitles -bool false"
