@@ -16,7 +16,7 @@ This script purposes is to configure newly installed Mac with just the input of 
 It is using only bash command and is shellcheck proof.
 If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
-V2 !! Yes already a V2 as I was not satisfied with the V1. Overall simplification (I think) and seperation of tasks. Implementation of Brewfile too!!
+V2 !! Yes already a V2 as I was not satisfied with the V1. Overall simplification (I think) and seperation of tasks. Implementation of a Brewfile too!!
 
 # Installation
 > Note: Please review the code before running it blindly
@@ -26,22 +26,15 @@ Open a Terminal and run the following commands:
 curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/v2/install.sh | bash
 ```
 
-A few options are available for installation:
-```shell
-- ./install.sh -V # verbose mode, all INFO will be displayed and logged.
-- ./install.sh -D # debug mode, all INFO and all commands will be displayed and logged.
-- ./install.sh -S # silent mode, only ╰[ ⁰﹏⁰ ]╯ will be displayed and logged.
-```
-
-By default, it will run with NOTIFICATION, WARNING, ERRROR and SUCCESS.
-
 # Description
 
 Most of the code is self explanatory.
-Function has the following naming convention: `object`_`action`_`specificity`
-for example: 
-- Getting sudo password => sudo_get_password
-- Setting defaul shell => shell_set_default
+
+Function has the following naming convention: `object` _ `action` _ `specificity`
+
+For example: 
+- Getting sudo password => `sudo_get_password`
+- Setting defaul shell => `shell_set_default`
 
 ## SUDO
 
