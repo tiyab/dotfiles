@@ -676,7 +676,7 @@ function ossettings() {
   # For other paths, use 'PfLo' and 'file:///full/path/here/'
   # defaults write com.apple.finder NewWindowTarget -string "PfDe"
   tracecommand "defaults write com.apple.finder NewWindowTarget -string 'PfLo'"
-  tracecommand "defaults write com.apple.finder NewWindowTargetPath -string \"file://${HOME}/Downloads/\""
+  tracecommand "defaults write com.apple.finder NewWindowTargetPath -string file://${HOME}/Downloads/"
 
   # traceinfo "Show hidden files by default"
   # tracecommand "defaults write com.apple.finder AppleShowAllFiles -bool true"
