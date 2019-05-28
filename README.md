@@ -3,11 +3,15 @@
 ![](https://img.shields.io/badge/GNU%20bash-%3E%3D%203.2-blue.svg)
 ![](https://img.shields.io/badge/dependencies-none-lightgrey.svg)
 
+---
+
 # ╰[ ⁰﹏⁰ ]╯ - Dotfiles bot
 
 Almost unattended dotfiles for Mac (gpg-suite installation still pop up a window :/)
 
 Bash only, no dependencies!
+
+---
 
 # About
 > Note: Read me until the end before running the install script!
@@ -19,6 +23,8 @@ If it is reminding you of another dotfiles, that is normal. This is a copy AND r
 
 V2 !! Yes already a V2 as I was not satisfied with the V1. Overall simplification (I think) and seperation of tasks. Implementation of a Brewfile too!!
 
+---
+
 # Installation
 > Note: Please review the code before running it blindly
 
@@ -26,6 +32,8 @@ Open a Terminal and run the following commands:
 ```
 curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/v2/install.sh | bash
 ```
+
+---
 
 # Description
 
