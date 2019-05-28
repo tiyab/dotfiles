@@ -1078,7 +1078,8 @@ backup
 passwordlesssudo
 dotfiles
 ossettings
+wrapup
+
 if [[ "${GITDIR}/${GITPROJECT}" != "${RUNDIR}" ]]; then
-  wrapup
   tracecommand "${GITDIR}/${GITPROJECT}/cleanup.sh ${RUNDIR} ${GITDIR}"
 fi
