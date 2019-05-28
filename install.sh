@@ -18,7 +18,7 @@ PROJECTURL="https://github.com/tiyab/dotfiles.git"
 source "${LIBDIR}/sh/fmwk.sh"
 
 main() {
-  sudo_set_password
+  sudo_get_password
   homebrew_install
   homebrew_install_brewfile
   sshkey_config
@@ -32,7 +32,7 @@ main() {
   os_customize
 }
 
-function sudo_set_password() {
+function sudo_get_password() {
     traceinfo "Prompting for sudo password"
     if sudo --validate; then
         # Keep-alive
