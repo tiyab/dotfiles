@@ -8,7 +8,6 @@
 # ╰[ ⁰﹏⁰ ]╯ - Dotfiles bot
 
 Almost unattended dotfiles for Mac (gpg-suite installation still pop up a window :/)
-
 Bash only, no dependencies!
 
 ---
@@ -21,7 +20,7 @@ This script purposes is to configure newly installed Mac with just the input of 
 It is using only bash command and is shellcheck proof.
 If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
-V2 !! Yes already a V2 as I was not satisfied with the V1. Overall simplification (I think) and seperation of tasks. Implementation of a Brewfile too!!
+V2 !! Overall simplification (I think) and seperation of tasks. Implementation of a Brewfile too!!
 
 ---
 
@@ -40,7 +39,6 @@ curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/v2/install.sh | b
 Most of the code is self explanatory.
 
 Function has the following naming convention: `object` _ `action` _ `specificity`
-
 For example: 
 - Getting sudo password => `sudo_get_password`
 - Setting default shell => `shell_set_default`
@@ -61,7 +59,7 @@ It will generate a new pair of SSH keys ready to be used if none exist.
 
 ## software installation
 
-Software are installed via [Homebrew](https://brew.sh/) and [Homebrew-Bundle](https://github.com/Homebrew/homebrew-bundle)
+Software are installed via [Homebrew](https://brew.sh/) and [Homebrew-Bundle](https://github.com/Homebrew/homebrew-bundle).
 Refer to [Brewfile](Brewfile) to see the list of installed applications.
 
 ## software customization
