@@ -173,7 +173,7 @@ function vscode_set_config() {
 function os_customize() {
   if [[ ${OSTYPE} == darwin* ]]; then
     echo "Customizing MacOS"
-    "${PROJECTDIR}"/macos.sh
+    "${PROJECTDIR}"/macos.sh ${GITDIR} ${PROJECTDIR}
   fi
 }
 
