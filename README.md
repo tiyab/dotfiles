@@ -30,7 +30,7 @@ V2 !! Overall simplification (I think) and seperation of tasks via functions. Im
 
 Open a Terminal and run the following commands:
 ```
-curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/v2/install.sh | bash
+curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/master/install.sh | bash
 ```
 
 Once finish, just reboot as there is many settings that require an app restart.
