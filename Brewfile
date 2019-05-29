@@ -51,8 +51,6 @@ brew "nmap"
 brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
-# Reattach process (e.g., tmux) to background
-brew "reattach-to-user-namespace"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
 # Static analysis and lint tool, for (ba)sh scripts
