@@ -101,6 +101,8 @@ Too many to be listed here but here a list of few settings that are enforced:
 
 Everything else you will have to read `macos.sh`.
 
+---
+
 # Resources
 - :coffee: :coffee: :coffee:
 - [vscode](https://code.visualstudio.com/download)
@@ -111,6 +113,8 @@ Everything else you will have to read `macos.sh`.
 - [Root of v1](https://github.com/atomantic/dotfiles)
 - [Root of v2](https://github.com/sam-hosseini/dotfiles)
 - [Shields IO](https://shields.io/)
+
+---
 
 # LICENSE
 [GNU GENERAL PUBLIC LICENSE v3](LICENSE)
