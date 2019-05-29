@@ -14,8 +14,8 @@ BREWFILE="${PROJECTDIR}/Brewfile"
 main() {
   sudo_get_password
   git_make_dir
-  git_clone_project
   homebrew_install
+  git_clone_project
   homebrew_install_brewfile
   sshkey_config
   shell_set_default
@@ -56,13 +56,14 @@ function git_clone_project() {
 
 function homebrew_install() {
   if [[ "${OSTYPE}" == darwin* ]]; then
-    echo "==> Installing Homebrew"
     if ! command -v brew &>/dev/null; then
+      echo "==> Installing Homebrew"
       # Unattended installation of Homebrew
       if ! CI=1 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; then
         echo "==> Homebrew installation failed, the installation script may be unavailable..."
         exit 1
       fi
+      brew install git
     fi
   fi
 }
