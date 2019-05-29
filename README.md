@@ -18,12 +18,10 @@ Bash only, no dependencies!
 
 This script purposes is to configure newly installed Mac with just the input of sudo password. It is idempotent too. Once finished it will reboot.
 
-
 It is using only bash command and is shellcheck proof.
 If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
-V2 !! Overall simplification (I think) and seperation of tasks. Implementation of a Brewfile too!!
-
+V2 !! Overall simplification (I think) and seperation of tasks via functions. Implementation of a Brewfile too!!
 
 ---
 
@@ -34,6 +32,8 @@ Open a Terminal and run the following commands:
 ```
 curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/v2/install.sh | bash
 ```
+
+Once finish, just reboot as there is many settings that require an app restart.
 
 ---
 
@@ -60,12 +60,12 @@ Updated from [https://someonewhocares.org/hosts/hosts](https://someonewhocares.o
 
 It will generate a new pair of SSH keys ready to be used if none exist.
 
-## software installation
+## softwares installation
 
-Software are installed via [Homebrew](https://brew.sh/) and [Homebrew-Bundle](https://github.com/Homebrew/homebrew-bundle).
+Softwares are installed via [Homebrew](https://brew.sh/) and [Homebrew-Bundle](https://github.com/Homebrew/homebrew-bundle).
 Refer to [Brewfile](Brewfile) to see the list of installed applications.
 
-## software customization
+## softwares customization
 
 ### zsh
 

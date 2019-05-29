@@ -144,7 +144,7 @@ function vim_install_vundle() {
         ln -sf "${PROJECTDIR}/files/vimrc" "${HOME}/.vimrc"
         echo "== Installing plugins"
         # https://github.com/VundleVim/Vundle.vim/issues/511#issuecomment-134251209
-        echo | echo | vim +PluginInstall +qall &>/dev/null
+        echo | vim +PluginInstall +qall &>/dev/null
         # vim +PluginInstall +qall
       fi
     fi
