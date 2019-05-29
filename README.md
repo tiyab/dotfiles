@@ -103,6 +103,8 @@ Too many to be listed here but here a list of few settings that are enforced:
 
 Everything else you will have to read `macos.sh`.
 
+---
+
 # Resources
 - :coffee: :coffee: :coffee:
 - [vscode](https://code.visualstudio.com/download)
@@ -114,6 +116,8 @@ Everything else you will have to read `macos.sh`.
 - [Root of v2](https://github.com/sam-hosseini/dotfiles)
 - [zsh conf](https://github.com/wincent/wincent/blob/fe798113ffb7c616cb7c332c91eaffd62e781048/roles/dotfiles/files/.zshrc#L43-L123)
 - [Shields IO](https://shields.io/)
+
+---
 
 # LICENSE
 [GNU GENERAL PUBLIC LICENSE v3](LICENSE)
