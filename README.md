@@ -32,8 +32,6 @@ Open a Terminal and run the following commands:
 curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/master/install.sh | bash
 ```
 
-During the installation there will be a `gpg-suite` popup, didn't found out yet how to auto accept :/
-
 Once finish, just reboot as there is many settings that require an app restart.
 
 ---
