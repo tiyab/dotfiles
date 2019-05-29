@@ -17,7 +17,7 @@ Bash only, no dependencies!
 
 > Note: Read me until the end before running the install script!
 
-This script purposes is to configure newly installed Mac with just the input of sudo password. 
+This script purposes is to configure newly installed Mac (tested only on Mojave, 10.14.x) with just the input of sudo password. 
 The script is idempotent and use bash only commands.
 
 At first it was based on [atomantic dotfiles](https://github.com/atomantic/dotfiles), heavily modified by me. And then the V2 was inspired by [sam-hosseini dotfiles](https://github.com/sam-hosseini/dotfiles). The result is the current version.
