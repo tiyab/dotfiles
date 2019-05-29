@@ -184,7 +184,7 @@ function system() {
   echo "==> System: Deactivate opening application for the first time popup"
   sudo /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -all local,system,user
   echo "==> Sytem: Disabling the sound effects on boot"
-  sudo nvram SystemAudioVolume=%00
+  sudo nvram SystemAudioVolume=%01
   echo "==> Sytem: Menu bar: disabling transparency"
   defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
   echo "==> Sytem: Setting sidebar icon size to small"
