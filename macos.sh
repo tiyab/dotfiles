@@ -413,7 +413,7 @@ function spotlight() {
     '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
     '{"enabled" = 0;"name" = "SOURCE";}'
   echo "== Spotlight: Load new settings before rebuilding the index"
-  killall mds
+  sudo killall mds &>/dev/null
   echo "== Spotlight: Make sure indexing is enabled for the main volume"
   sudo mdutil -i on / &>/dev/null
 }
