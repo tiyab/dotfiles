@@ -1,6 +1,7 @@
 ![](https://img.shields.io/badge/dotfiles-v2-green.svg)
 ![](https://img.shields.io/badge/license-GPL%20v3-green.svg)
 ![](https://img.shields.io/badge/GNU%20bash-%3E%3D%203.2-blue.svg)
+![](https://img.shields.io/badge/shellcheck-100%25-green.svg)
 ![](https://img.shields.io/badge/dependencies-none-lightgrey.svg)
 
 ---
@@ -16,9 +17,9 @@ Bash only, no dependencies!
 
 > Note: Read me until the end before running the install script!
 
-This script purposes is to configure newly installed Mac with just the input of sudo password. It is idempotent too.
+This script purposes is to configure newly installed Mac with just the input of sudo password. 
+The script is idempotent and use bash only commands.
 
-It is using only bash command and is shellcheck proof.
 If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
 
 V2 !! Overall simplification (I think) and seperation of tasks via functions. Implementation of a Brewfile too!!
@@ -32,6 +33,8 @@ Open a Terminal and run the following commands:
 ```
 curl --silent https://raw.githubusercontent.com/tiyab/dotfiles/master/install.sh | bash
 ```
+
+During the installation there will be a `gpg-suite` popup, didn't found out yet how to auto accept :/
 
 Once finish, just reboot as there is many settings that require an app restart.
 
@@ -64,8 +67,6 @@ It will generate a new pair of SSH keys ready to be used if none exist.
 
 Softwares are installed via [Homebrew](https://brew.sh/) and [Homebrew-Bundle](https://github.com/Homebrew/homebrew-bundle).
 Refer to [Brewfile](Brewfile) to see the list of installed applications.
-
-> Calibre and VLC failed to be installed on the first run. But after reboot, installation is successful.
 
 ## softwares customization
 
