@@ -31,7 +31,7 @@ main() {
   safari
   mail
   spotlight
-  terminal
+  iterm
   timemachine
   activitymonitor
   messages
@@ -427,10 +427,10 @@ function spotlight() {
   # sudo mdutil -E /
 }
 
-function terminal() {
+function iterm() {
   echo "== Installing the Base16 default dark theme for iTerm (opening file)"
   if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default-dark' > /dev/null; then
-    open ${PROJECTDIR}/terminal/base16-default.dark.itermcolors
+    open ${PROJECTDIR}/files/iterm/base16-default.dark.itermcolors
   fi
   echo "== Don’t display the annoying prompt when quitting iTerm"
   defaults write com.googlecode.iterm2 PromptOnQuit -bool false
