@@ -109,8 +109,6 @@ Everything else you will have to read `macos.sh`.
 - [shellcheck](https://www.shellcheck.net/)
 - [BashFAQ](https://mywiki.wooledge.org/BashFAQ)
 - [StyleGuide](https://google.github.io/styleguide/shell.xml#Variable_Names)
-- [Log level](http://www.ludovicocaldara.net/dba/bash-tips-4-use-logging-levels/)
-- [Log file](http://www.ludovicocaldara.net/dba/bash-tips-5-output-logfile/)
 - [Root of everything](https://github.com/HiDeoo)
 - [Root of v1](https://github.com/atomantic/dotfiles)
 - [Root of v2](https://github.com/sam-hosseini/dotfiles)
