@@ -76,6 +76,7 @@ brew "wget"
 # UNIX shell (command interpreter)
 brew "zsh"
 cask "calibre"
+caks "google-chrome"
 cask "discord"
 cask "docker"
 cask "font-fontawesome"
