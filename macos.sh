@@ -451,8 +451,8 @@ function terminal() {
   echo "== setting fonts"
   defaults write com.googlecode.iterm2 'Normal Font' -string 'PragmataPro Mono Liga 14'
   defaults write com.googlecode.iterm2 'Non Ascii Font' -string 'PragmataPro Mono Liga 14'
-  echo "== reading iterm settings"
-  defaults read -app iTerm
+  # echo "== reading iterm settings"
+  # defaults read -app iTerm
 }
 
 function timemachine() {
