@@ -120,7 +120,7 @@ function ssd() {
   sudo pmset -a sms 0
 }
 
-echo "Disabling \"Are you sure you want to open this application?\" dialog"
+echo "Disabling 'Are you sure you want to open this application?' dialog"
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 function desktop() {
@@ -134,15 +134,15 @@ function desktop() {
 function dock() {
   echo "Wiping all (default) app icons from the Dock"
   # This is only really useful when setting up a new Mac, or if you don’t use the Dock to launch apps.
-  defaults write com.apple.dock persistent-apps -array \"\"
+  defaults write com.apple.dock persistent-apps -array ''
   echo "Enabling the 2D Dock"
   defaults write com.apple.dock no-glass -bool true
   echo "Setting Dock to the left"
   defaults write com.apple.dock orientation -string left
   # echo "Adding a spacer to the left side of the Dock (where the applications are)"
-  # defaults write com.apple.dock persistent-apps -array-add '{tile-data=\"\"; tile-type=\"spacer-tile\";}'
+  # defaults write com.apple.dock persistent-apps -array-add '{tile-data=""; tile-type="spacer-tile";}'
   # echo "Adding a spacer to the right side of the Dock (where the Trash is)"
-  # defaults write com.apple.dock persistent-others -array-add '{tile-data=\"\"; tile-type=\"spacer-tile\";}'
+  # defaults write com.apple.dock persistent-others -array-add '{tile-data=""; tile-type="spacer-tile";}'
   echo "Enabling highlight hover effect for the grid view of a stack (Dock)"
   defaults write com.apple.dock mouse-over-hilite-stack -bool true
   echo "Setting the icon size of Dock items to 32 pixels"
@@ -171,7 +171,7 @@ function dock() {
 
 function system() {
   # echo "Setting boot in verbose mode (not MacOS GUI mode)"
-  # sudo nvram boot-args=\"-v\
+  # sudo nvram boot-args="-v"
   echo "Settings Interface style to Dark"
   defaults write 'Apple Global Domain' AppleInterfaceStyle Dark
   echo "Setting highlight color to yellow (System Preferences > General > Highlight color)"
@@ -491,7 +491,7 @@ defaults write com.apple.appstore ShowDebugMenu -bool true
 
 function misc() {
   echo "Increase sound quality for Bluetooth headphones/headsets"
-  defaults write com.apple.BluetoothAudioAgent \"Apple Bitpool Min (editable)\" -int 40
+  defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
   echo "Enable the debug menu in Address Book"
   defaults write com.apple.addressbook ABShowDebugMenu -bool true
