@@ -50,7 +50,7 @@ function git_clone_project() {
     echo "dotfiles already exists; checking for updates"
     git -C ${PROJECTDIR} pull
   else
-    git clone ${PROJECTURL} ${PROJECTDIR}
+    git clone ${PROJECTURL} ${PROJECTDIR} --branch v2
   fi
 }
 
@@ -154,7 +154,6 @@ function vim_install_vundle() {
 }
 
 function vscode_set_config() {
-  VScode configuration
   echo "Setting up settings for VSCode"
   if [[ -f ${FILES}/vscode/settings.json ]]; then
     cp -a ${FILES}/vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
