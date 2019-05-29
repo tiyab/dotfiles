@@ -79,9 +79,7 @@ function sharing() {
   echo "== Sharing: Disabling Remote Apple Sharing"
   sudo systemsetup -setremoteappleevents off
   echo "== Sharing: Disabling Remote Login"
-  sudo systemsetup -setremotelogin off
-  echo "== Sharing: Disabling File Sharing"
-  sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist
+  sudo systemsetup -setremotelogin off -f
   echo "== SHaring: Disabling wake-on LAN"
   sudo systemsetup -setwakeonnetworkaccess off
 }
