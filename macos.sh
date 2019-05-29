@@ -64,9 +64,11 @@ function bluetooth() {
 
 function datetime() {
   echo "== Date & Time: Setting up automatic date & time"
-  sudo systemsetup -setnetworktimeserver time.euro.apple.com
-  sudo systemsetup -setusingnetworktime on
-  sudo systemsetup -settimezone Europe/Paris
+  sudo systemsetup -setusingnetworktime on > /dev/null
+  echo "== Date & Time: Using NTP time.euro.apple.com"
+  sudo systemsetup -setnetworktimeserver time.euro.apple.com  > /dev/null
+  echo "== Date & Time: Setting timezone to Europe/Paris"
+  sudo systemsetup -settimezone Europe/Paris > /dev/null
 }
 
 function screensaver() {
@@ -77,11 +79,11 @@ function screensaver() {
 
 function sharing() {
   echo "== Sharing: Disabling Remote Apple Sharing"
-  sudo systemsetup -setremoteappleevents off
+  sudo systemsetup -setremoteappleevents off > /dev/null
   echo "== Sharing: Disabling Remote Login"
-  sudo systemsetup -f -setremotelogin off
+  sudo systemsetup -f -setremotelogin off > /dev/null
   echo "== SHaring: Disabling wake-on LAN"
-  sudo systemsetup -setwakeonnetworkaccess off
+  sudo systemsetup -setwakeonnetworkaccess off > /dev/null
 }
 
 function firewall() {
@@ -207,13 +209,11 @@ function system() {
   echo "== Sytem: Restart automatically if the computer freezes"
   sudo systemsetup -setrestartfreeze on
   echo "== Sytem: Disabling sleep mode"
-  sudo systemsetup -setcomputersleep Off
+  sudo systemsetup -setcomputersleep Off > /dev/null
   echo "== Sytem: Disabling smart quotes as they’re annoying when typing code"
   defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
   echo "== Sytem: Disabling smart dashes as they’re annoying when typing code"
   defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-  echo "== Sytem: Disabling Notification Center and remove the menu bar icon"
-  launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist
 }
 
 function trackpad() {
@@ -393,11 +393,6 @@ function mail() {
 }
 
 function spotlight() {
-  # echo "== Spotlight: Hide Spotlight tray-icon (and subsequent helper)"
-  # sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-  echo "== Spotlight: Disabling Spotlight indexing for any volume that gets mounted and has not yet been indexed"
-  # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-  sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array '/Volumes'
   echo "== Spotlight: Change indexing order and disable some file types from being indexed"
   defaults write com.apple.spotlight orderedItems -array \
     '{"enabled" = 1;"name" = "APPLICATIONS";}' \
@@ -419,14 +414,12 @@ function spotlight() {
   echo "== Spotlight: Load new settings before rebuilding the index"
   killall mds
   echo "== Spotlight: Make sure indexing is enabled for the main volume"
-  sudo mdutil -i on /
-  # echo "== Spotlight: Rebuild the index from scratch"
-  # sudo mdutil -E /
+  sudo mdutil -i on / > /dev/null
 }
 
 function iterm() {
   echo "== iTerm2: Installing the Base16 default dark theme for iTerm (opening file)"
-  if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default-dark' > /dev/null; then
+  if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default.dark' > /dev/null; then
     open ${PROJECTDIR}/files/iterm/base16-default.dark.itermcolors
   fi
   echo "== iTerm2: Don’t display the annoying prompt when quitting iTerm"
