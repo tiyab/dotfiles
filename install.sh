@@ -24,7 +24,6 @@ main() {
   vim_install_vundle
   vscode_set_config
   os_customize
-  reboot
 }
 
 function sudo_get_password() {
@@ -144,7 +143,9 @@ function vim_install_vundle() {
         echo "Setting up custom vimrc"
         ln -sf ${PROJECTDIR}/files/vimrc $HOME/.vimrc
         echo "Installing plugins"
-        vim +PluginInstall +qall
+        # https://github.com/VundleVim/Vundle.vim/issues/511#issuecomment-134251209
+        echo | echo | vim +PluginInstall +qall &>/dev/null
+        # vim +PluginInstall +qall
       fi
     fi
   else
@@ -175,11 +176,6 @@ function os_customize() {
     echo "Customizing MacOS"
     "${PROJECTDIR}"/macos.sh
   fi
-}
-
-function reboot() {
-  echo "Rebooting system"
-  sudo shutdown -r +1
 }
 
 main "$@"
