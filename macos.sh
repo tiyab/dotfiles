@@ -181,6 +181,8 @@ function system() {
     echo "== Sytem: Initializing 'locate' command"
     sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
   fi
+  echo "== System: Deactivate opening application for the first time popup"
+  sudo /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -all local,system,user
   echo "== Sytem: Disabling the sound effects on boot"
   sudo nvram SystemAudioVolume=''
   echo "== Sytem: Menu bar: disabling transparency"
