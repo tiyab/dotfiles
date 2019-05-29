@@ -6,8 +6,7 @@
 # LICENSE     : GNU GPLv3
 # --------------------------------------------------------------------------- #
 
-GITDIR="${1}"
-PROJECTDIR="${2}"
+PROJECTDIR="${1}"
 
 main() {
   sys_pref_close
@@ -64,11 +63,11 @@ function bluetooth() {
 
 function datetime() {
   echo "== Date & Time: Setting up automatic date & time"
-  sudo systemsetup -setusingnetworktime on > /dev/null
+  sudo systemsetup -setusingnetworktime on &>/dev/null
   echo "== Date & Time: Using NTP time.euro.apple.com"
-  sudo systemsetup -setnetworktimeserver time.euro.apple.com  > /dev/null
+  sudo systemsetup -setnetworktimeserver time.euro.apple.com  &>/dev/null
   echo "== Date & Time: Setting timezone to Europe/Paris"
-  sudo systemsetup -settimezone Europe/Paris > /dev/null
+  sudo systemsetup -settimezone Europe/Paris &>/dev/null
 }
 
 function screensaver() {
@@ -79,11 +78,11 @@ function screensaver() {
 
 function sharing() {
   echo "== Sharing: Disabling Remote Apple Sharing"
-  sudo systemsetup -setremoteappleevents off > /dev/null
+  sudo systemsetup -setremoteappleevents off &>/dev/null
   echo "== Sharing: Disabling Remote Login"
-  sudo systemsetup -f -setremotelogin off > /dev/null
+  sudo systemsetup -f -setremotelogin off &>/dev/null
   echo "== SHaring: Disabling wake-on LAN"
-  sudo systemsetup -setwakeonnetworkaccess off > /dev/null
+  sudo systemsetup -setwakeonnetworkaccess off &>/dev/null
 }
 
 function firewall() {
@@ -209,7 +208,7 @@ function system() {
   echo "== Sytem: Restart automatically if the computer freezes"
   sudo systemsetup -setrestartfreeze on
   echo "== Sytem: Disabling sleep mode"
-  sudo systemsetup -setcomputersleep Off > /dev/null
+  sudo systemsetup -setcomputersleep Off &>/dev/null
   echo "== Sytem: Disabling smart quotes as they’re annoying when typing code"
   defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
   echo "== Sytem: Disabling smart dashes as they’re annoying when typing code"
@@ -256,8 +255,8 @@ function keyboard() {
 
 function screenshot(){
   echo "== Screenshot: Save screenshots to the desktop screenshot folder"
-  mkdir -p ${HOME}/Desktop/screenshots
-  defaults write com.apple.screencapture location -string ${HOME}/Desktop/screenshots
+  mkdir -p "${HOME}/Desktop/screenshots"
+  defaults write com.apple.screencapture location -string "${HOME}/Desktop/screenshots"
   echo "== Screenshot: Save screenshots in PNG format (options: PNG, BMP, GIF, JPG, PDF, TIFF)"
   defaults write com.apple.screencapture type -string 'png'
   echo "== Screenshot: Disabling shadow in screenshots"
@@ -279,7 +278,7 @@ function finder() {
   defaults write com.apple.finder DisableAllAnimations -bool true
   echo "== Finder: Set ~/Downloads as the default location for new Finder windows"
   defaults write com.apple.finder NewWindowTarget -string 'PfLo'
-  defaults write com.apple.finder NewWindowTargetPath -string file://${HOME}/Downloads/
+  defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads/"
   # echo "== Finder: Show hidden files by default"
   # defaults write com.apple.finder AppleShowAllFiles -bool true
   echo "== Finder: Show all filename extensions"
@@ -414,13 +413,13 @@ function spotlight() {
   echo "== Spotlight: Load new settings before rebuilding the index"
   killall mds
   echo "== Spotlight: Make sure indexing is enabled for the main volume"
-  sudo mdutil -i on / > /dev/null
+  sudo mdutil -i on / &>/dev/null
 }
 
 function iterm() {
   echo "== iTerm2: Installing the Base16 default dark theme for iTerm (opening file)"
-  if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default.dark' > /dev/null; then
-    open ${PROJECTDIR}/files/iterm/base16-default.dark.itermcolors
+  if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default.dark' &>/dev/null; then
+    open "${PROJECTDIR}/files/iterm/base16-default.dark.itermcolors"
   fi
   echo "== iTerm2: Don’t display the annoying prompt when quitting iTerm"
   defaults write com.googlecode.iterm2 PromptOnQuit -bool false
