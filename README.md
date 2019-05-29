@@ -23,6 +23,8 @@ The script is idempotent and use bash only commands.
 
 At first it was based on [atomantic dotfiles](https://github.com/atomantic/dotfiles), heavily modified by me. And then the V2 was inspired by [sam-hosseini dotfiles](https://github.com/sam-hosseini/dotfiles). The result is the current version.
 
+My zsh configuration is from [wincent dotfiles](https://github.com/wincent/wincent/blob/fe798113ffb7c616cb7c332c91eaffd62e781048/roles/dotfiles/files/.zshrc#L43-L123) with some modifications to match my needs.
+
 ---
 
 # Installation
@@ -110,6 +112,7 @@ Everything else you will have to read `macos.sh`.
 - [Root of everything](https://github.com/HiDeoo)
 - [Root of v1](https://github.com/atomantic/dotfiles)
 - [Root of v2](https://github.com/sam-hosseini/dotfiles)
+- [zsh conf](https://github.com/wincent/wincent/blob/fe798113ffb7c616cb7c332c91eaffd62e781048/roles/dotfiles/files/.zshrc#L43-L123)
 - [Shields IO](https://shields.io/)
 
 # LICENSE
