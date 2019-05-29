@@ -31,7 +31,7 @@ function sudo_get_password() {
     if sudo --validate; then
         # Keep-alive
         while true; do sudo --non-interactive true; \
-            sleep 10; kill -0 "$$" || exit; done 2>/dev/null &
+          sleep 10; kill -0 "$$" || exit; done 2>/dev/null &
         echo "==> Sudo password updated"
     else
         echo "==> Sudo password update failed"
@@ -145,6 +145,7 @@ function vim_install_vundle() {
         echo "==> Setting up custom vimrc"
         ln -sf "${PROJECTDIR}/files/vimrc" "${HOME}/.vimrc"
         echo "==> Installing plugins"
+        # Unattended installation of vundle plugins
         # https://github.com/VundleVim/Vundle.vim/issues/511#issuecomment-134251209
         echo | vim +PluginInstall +qall &>/dev/null
       fi
