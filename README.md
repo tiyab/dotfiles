@@ -49,7 +49,7 @@ For example:
 
 ## sudo
 
-Require SUDO to execute the script and it is use the whole execution.
+Require SUDO to execute the script.
 
 ## hosts file
 
