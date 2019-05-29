@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/dotfiles-v2-yellow.svg)
+![](https://img.shields.io/badge/dotfiles-v2-green.svg)
 ![](https://img.shields.io/badge/license-GPL%20v3-green.svg)
 ![](https://img.shields.io/badge/GNU%20bash-%3E%3D%203.2-blue.svg)
 ![](https://img.shields.io/badge/dependencies-none-lightgrey.svg)
