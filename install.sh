@@ -102,7 +102,7 @@ function shell_set_prezto() {
   # shellcheck disable=SC2154
   if [[ -d ${PROJECTDIR}/files/zsh ]]; then
     echo "== Setting up custom zsh configuration"
-    find "${PROJECTDIR}/files/zsh" -name 'z*' -exec sh -c 'name=$(basename ${1}); ln -sf ${1} ${HOME}/.${name}' _ {} \;
+    find "${PROJECTDIR}/files/zsh" -name 'z*' -exec sh -c 'name=$(basename ${1}); ln -sfF ${1} ${HOME}/.${name}' _ {} \;
   else
     echo "== Setting up default prezto configuration"
     find "${HOME}/.zprezto/runcoms" -type f -name 'z*' -exec sh -c 'name=$(basename ${1}); ln -sf ${1} ${HOME}/.${name}' _ {} \;
