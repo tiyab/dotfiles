@@ -65,7 +65,7 @@ It will generate a new pair of SSH keys ready to be used if none exist.
 Softwares are installed via [Homebrew](https://brew.sh/) and [Homebrew-Bundle](https://github.com/Homebrew/homebrew-bundle).
 Refer to [Brewfile](Brewfile) to see the list of installed applications.
 
-> Calibre and VLC failed to be installed on the first run, but when second run is done, installation is successful.
+> Calibre and VLC failed to be installed on the first run. But after reboot, installation is successful.
 
 ## softwares customization
 
