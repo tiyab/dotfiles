@@ -157,17 +157,11 @@ function vim_install_vundle() {
 function vscode_set_config() {
   echo "==> Setting up settings for VSCode"
   if [[ -f ${FILES}/vscode/settings.json ]]; then
-    cp -a "${FILES}/vscode/settings.json" "${HOME}/Library/Application\ Support/Code/User/settings.json"
-    if [[ $(md5 -q "${FILES}"/vscode/settings.json) != $(md5 -q "${HOME}"/Library/Application\ Support/Code/User/settings.json) ]]; then
-      echo "==> Failed to copy VSCode settings"
-    fi
+    ln -sf "${FILES}/vscode/settings.json" "${HOME}/Library/Application\ Support/Code/User/settings.json"
   fi
   echo "==> Setting up keybindings for VSCode"
   if [[ -f ${FILES}/vscode/keybindings.json ]]; then
-    cp -a "${FILES}/vscode/keybindings.json" "${HOME}/Library/Application\ Support/Code/User/keybindings.json"
-    if [[ "$(md5 -q "${FILES}"/vscode/keybindings.json)" != "$(md5 -q "${HOME}"/Library/Application\ Support/Code/User/keybindings.json)" ]]; then
-      echo "==> Failed to copy VSCode keybindings"
-    fi
+    ln -sf "${FILES}/vscode/keybindings.json" "${HOME}/Library/Application\ Support/Code/User/keybindings.json"
   fi
 }
 
