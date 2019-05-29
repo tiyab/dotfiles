@@ -50,7 +50,7 @@ function git_clone_project() {
     echo "==> dotfiles already exists; checking for updates"
     git -C "${PROJECTDIR}" pull
   else
-    git clone "${PROJECTURL}" "${PROJECTDIR}" --branch v2
+    git clone "${PROJECTURL}" "${PROJECTDIR}"
   fi
 }
 
