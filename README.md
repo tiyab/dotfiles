@@ -2,6 +2,7 @@
 ![](https://img.shields.io/badge/license-GPL%20v3-green.svg)
 ![](https://img.shields.io/badge/GNU%20bash-%3E%3D%203.2-blue.svg)
 ![](https://img.shields.io/badge/shellcheck-100%25-green.svg)
+![](https://img.shields.io/badge/macOS-14.4-green.svg)
 ![](https://img.shields.io/badge/dependencies-none-lightgrey.svg)
 
 ---
