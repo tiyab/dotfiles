@@ -2,7 +2,7 @@
 # --------------------------------------------------------------------------- #
 # SCRIPT NAME : install.sh
 # DESCRIPTION : Unattended script to configure dotfiles and MacOS configuration
-# AUTHOR(S)   : TiYab, Adam Eivy
+# AUTHOR(S)   : TiYab
 # LICENSE     : GNU GPLv3
 # --------------------------------------------------------------------------- #
 
