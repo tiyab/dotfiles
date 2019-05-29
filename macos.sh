@@ -79,7 +79,7 @@ function sharing() {
   echo "== Sharing: Disabling Remote Apple Sharing"
   sudo systemsetup -setremoteappleevents off
   echo "== Sharing: Disabling Remote Login"
-  sudo systemsetup -setremotelogin off -f
+  sudo systemsetup -f -setremotelogin off
   echo "== SHaring: Disabling wake-on LAN"
   sudo systemsetup -setwakeonnetworkaccess off
 }
