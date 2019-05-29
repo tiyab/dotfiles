@@ -20,9 +20,7 @@ Bash only, no dependencies!
 This script purposes is to configure newly installed Mac with just the input of sudo password. 
 The script is idempotent and use bash only commands.
 
-If it is reminding you of another dotfiles, that is normal. This is a copy AND reviewed version of this [atomantic dotfiles project](https://github.com/atomantic/dotfiles).
-
-V2 !! Overall simplification (I think) and seperation of tasks via functions. Implementation of a Brewfile too!!
+At first it was based on [atomantic dotfiles](https://github.com/atomantic/dotfiles), heavily modified by me. And then the V2 was inspired by [sam-hosseini dotfiles](https://github.com/sam-hosseini/dotfiles). The result is the current version.
 
 ---
 
