@@ -30,6 +30,7 @@ main() {
   vim_install_vundle
   vscode_set_config
   os_customize
+  reboot
 }
 
 function sudo_get_password() {
@@ -46,24 +47,28 @@ function sudo_get_password() {
 }
 
 function homebrew_install() {
-  traceinfo "Installing Homebrew"
-  if ! command -v brew > /dev/null; then
-    # Unattended installation of Homebrew
-    tracedebug "CI=1 /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
-    if ! CI=1 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; then
-      traceerror "Homebrew installation failed, the installation script may be unavailable..."
-      exit 1
+  if [[ ${OSTYPE} == darwin* ]]; then
+    traceinfo "Installing Homebrew"
+    if ! command -v brew > /dev/null; then
+      # Unattended installation of Homebrew
+      tracedebug "CI=1 /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+      if ! CI=1 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; then
+        traceerror "Homebrew installation failed, the installation script may be unavailable..."
+        exit 1
+      fi
     fi
   fi
 }
 
 function homebrew_install_brewfile() {
-  traceinfo "Installing tap/formulas/casks from Brewfile"
-  tracedebug "/usr/local/bin/brew bundle install --file=${BREWFILE}"
-  if /usr/local/bin/brew bundle install --file="${BREWFILE}"; then
-    tracesuccess "All tap/formulas/casks from Brewfile are installed"
-  else
-    traceerror "Failed to install tap/formulas/casks from Brewfile"
+  if command -v brew > /dev/null; then
+    traceinfo "Installing tap/formulas/casks from Brewfile"
+    tracedebug "/usr/local/bin/brew bundle install --file=${BREWFILE}"
+    if /usr/local/bin/brew bundle install --file="${BREWFILE}"; then
+      tracesuccess "All tap/formulas/casks from Brewfile are installed"
+    else
+      traceerror "Failed to install tap/formulas/casks from Brewfile"
+    fi
   fi
 }
 
@@ -177,8 +182,15 @@ function vscode_set_config() {
 }
 
 function os_customize() {
-  traceinfo "Customizing MacOS"
-  macos.sh
+  if [[ ${OSTYPE} == darwin* ]]; then
+    traceinfo "Customizing MacOS"
+    macos.sh
+  fi
+}
+
+function reboot() {
+  traceinfo "Rebooting system"
+  tracecommand "sudo shutdown -r +1"
 }
 
 main "$@"

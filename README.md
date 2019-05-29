@@ -87,6 +87,13 @@ Custom `settings.json` and `keybindings.json`
 
 # OS configuration
 
+timeserver: time.euro.apple.com
+timezone: Europe/Paris
+applelanguage: English
+currency: EUR
+measurement: centimeters 
+hotcorners: all disable
+
 ### SSD-specific tweaks  
 - Disable local Time Machine snapshots
 - Disable hibernation (speeds up entering sleep mode)
