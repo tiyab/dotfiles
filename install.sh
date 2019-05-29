@@ -100,7 +100,7 @@ function shell_set_prezto() {
   fi
   shopt -s extglob
   # shellcheck disable=SC2154
-  if [[ -d "${GITPROJECT}/files/zsh" ]]; then
+  if [[ -d "${PROJECTDIR}/files/zsh" ]]; then
     echo "Setting up custom zsh configuration"
     find "${PROJECTDIR}/files/zsh" -name 'z*' -exec sh -c 'name=$(basename ${1}); ln -sf ${1} ${HOME}/.${name}' _ {} \;
   else
