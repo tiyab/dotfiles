@@ -146,7 +146,6 @@ function vim_install_vundle() {
         echo "==> Installing plugins"
         # https://github.com/VundleVim/Vundle.vim/issues/511#issuecomment-134251209
         echo | vim +PluginInstall +qall &>/dev/null
-        # vim +PluginInstall +qall
       fi
     fi
   else
