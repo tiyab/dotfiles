@@ -178,8 +178,7 @@ function vscode_set_config() {
 
 function os_customize() {
   traceinfo "Customizing MacOS"
-  # shellcheck source=macos.sh
-  source macos.sh
+  macos.sh
 }
 
 main "$@"
