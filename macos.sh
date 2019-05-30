@@ -11,7 +11,7 @@ PROJECTDIR="${1}"
 main() {
   sys_pref_close
   update
-  bluetooth "OFF"
+  bluetooth
   datetime
   screensaver
   sharing
@@ -50,15 +50,12 @@ function update() {
 }
 
 function bluetooth() {
-  if [[ ${1} == ON ]]; then
-    echo "==> Bluetooth: ON"
-    sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 1
-    sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
-  else
-    echo "==> Bluetooth: OFF "
+    # echo "==> Bluetooth: ON"
+    echo "==> Bluetooth: OFF"
+    # sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 1
+    # sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
     sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
     sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
-  fi
 }
 
 function datetime() {
