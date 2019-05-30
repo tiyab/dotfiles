@@ -83,7 +83,7 @@ Vundle is installed only if VIM exist on the system which should be the case ^^
 
 ### vscode
 
-Custom `settings.json` and `keybindings.json`
+Custom [`settings.json`](files/vscode/settings.json) and [`keybindings.json`](files/vscode/keybindings.json)
 
 ---
 
@@ -101,7 +101,7 @@ Too many to be listed here but here a list of few settings that are enforced:
 - Remote Login: OFF (it means no SSH)
 - hotcorners: all disable
 
-Everything else you will have to read `macos.sh`.
+Everything else you will have to read [`macos.sh`](macos.sh).
 
 ---
 
