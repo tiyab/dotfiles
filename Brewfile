@@ -75,6 +75,7 @@ brew "watch"
 brew "wget"
 # UNIX shell (command interpreter)
 brew "zsh"
+cask "1password"
 cask "alfred"
 cask "calibre"
 cask "google-chrome"
