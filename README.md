@@ -111,7 +111,7 @@ Everything else you will have to read `macos.sh`.
 - [shellcheck](https://www.shellcheck.net/)
 - [BashFAQ](https://mywiki.wooledge.org/BashFAQ)
 - [StyleGuide](https://google.github.io/styleguide/shell.xml#Variable_Names)
-- [Root of everything](https://github.com/HiDeoo)
+- [Root of everything](https://github.com/HiDeoo/dotfiles)
 - [Root of v1](https://github.com/atomantic/dotfiles)
 - [Root of v2](https://github.com/sam-hosseini/dotfiles)
 - [zsh conf](https://github.com/wincent/wincent/blob/fe798113ffb7c616cb7c332c91eaffd62e781048/roles/dotfiles/files/.zshrc#L43-L123)
