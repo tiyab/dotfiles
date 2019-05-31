@@ -255,8 +255,8 @@ function keyboard() {
   echo "==> Keyboard: Disabling press-and-hold for keys in favor of key repeat"
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
   echo "==> Keyboard: Set a blazingly fast keyboard repeat rate"
-  defaults write NSGlobalDomain KeyRepeat -int 2
-  defaults write NSGlobalDomain InitialKeyRepeat -int 10
+  defaults write NSGlobalDomain KeyRepeat -int 6
+  defaults write NSGlobalDomain InitialKeyRepeat -int 25
   echo "==> Keyboard: Setting language and text formats (english/US)"
   defaults write NSGlobalDomain AppleLanguages -array 'en'
   defaults write NSGlobalDomain AppleLocale -string 'en_US@currency=EUR'
