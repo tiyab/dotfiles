@@ -2607,7 +2607,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>427 885 918 452 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1283 0 1274 1417 0 0 2560 1417 </string>
+	<string>139 394 762 532 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1542 657 585 452 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_6AF61555-19EA-42E7-B7D5-4BB20FAA171F</key>
@@ -3619,19 +3619,19 @@
 								<key>base: priority</key>
 								<real>5</real>
 								<key>format</key>
-								<string>M-dd h:mm</string>
+								<string>yyMMdd hh:mm</string>
 								<key>shared text color</key>
 								<dict>
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.90000000000000002</real>
+									<real>0.89999997615814209</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.63</real>
+									<real>0.62999999523162842</real>
 									<key>Red Component</key>
-									<real>0.90000000000000002</real>
+									<real>0.89999997615814209</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -3697,14 +3697,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{143, 1146}</string>
+		<string>{1182, 951}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>E79298BB-8505-4833-A4DC-C0563FB46F20</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>72</integer>
+	<integer>73</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
