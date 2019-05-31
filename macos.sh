@@ -120,11 +120,32 @@ function ssd() {
 }
 
 function desktop() {
-  echo "==> Desjtop: Hiding icons for hard drives, servers, and removable media"
+  echo "==> Desktop: Hiding icons for hard drives, servers, and removable media"
   defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
   defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
   defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
   defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+  echo "==> Desktop: Setting icon group by kind"
+  /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:GroupBy Kind" ~/Library/Preferences/com.apple.finder.plist
+  echo "==> Desktop: Setting icon arrange by kind"
+  /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:arrangeBy Kind" ~/Library/Preferences/com.apple.finder.plist
+  /usr/libexec/PlistBuddy -c "Set :FK_DefaultListViewSettingsV2:sortColumn Kind" ~/Library/Preferences/com.apple.finder.plist
+  echo "==> Desktop: Setting grid spacing to 32"
+  /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 32" ~/Library/Preferences/com.apple.finder.plist
+  /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 32" ~/Library/Preferences/com.apple.finder.plist
+  /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 32" ~/Library/Preferences/com.apple.finder.plist
+  echo "==> Desktop: Setting icons size to 32px"
+  /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:iconSize 32" ~/Library/Preferences/com.apple.finder.plist
+  echo "==> Desktop: Setting text size to 12"
+  /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:textSize 12" ~/Library/Preferences/com.apple.finder.plist
+  echo "==> Desktop: Show item info"
+  /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+  /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+  /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+  echo "==> Desktop: Deactivating icon preview"
+  /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:showIconPreview false" ~/Library/Preferences/com.apple.finder.plist
+  echo "==> Desktop: Setting icon label on the right"
+  /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
 }
 
 function dock() {
