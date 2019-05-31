@@ -126,11 +126,8 @@ function desktop() {
   defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
   defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
   defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
-  echo "==> Desktop: Setting icon group by kind"
-  /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:GroupBy Kind" ~/Library/Preferences/com.apple.finder.plist
   echo "==> Desktop: Setting icon arrange by kind"
   /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:arrangeBy Kind" ~/Library/Preferences/com.apple.finder.plist
-  /usr/libexec/PlistBuddy -c "Set :FK_DefaultListViewSettingsV2:sortColumn Kind" ~/Library/Preferences/com.apple.finder.plist
   echo "==> Desktop: Setting grid spacing to 32"
   /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 32" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 32" ~/Library/Preferences/com.apple.finder.plist
@@ -255,11 +252,6 @@ function trackpad() {
 function keyboard() {
   echo "==> Keyboard: Enabling full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
   defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-  echo "==> Keyboard: Using scroll gesture with the Ctrl (^) modifier key to zoom"
-  defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-  defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
-  echo "==> Keyboard: Follow the keyboard focus while zoomed in"
-  defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
   echo "==> Keyboard: Disabling press-and-hold for keys in favor of key repeat"
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
   echo "==> Keyboard: Set a blazingly fast keyboard repeat rate"
