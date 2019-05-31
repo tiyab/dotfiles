@@ -157,12 +157,12 @@ function vim_install_vundle() {
 
 function vscode_set_config() {
   echo "==> Setting up settings for VSCode"
-  if [[ -f ${FILES}/vscode/settings.json ]]; then
-    ln -sf "${FILES}/vscode/settings.json" "${HOME}/Library/Application\ Support/Code/User/settings.json"
+  if [[ -f ${PROJECTDIR}/files/vscode/settings.json ]]; then
+    ln -sf "${PROJECTDIR}/files/vscode/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json"
   fi
   echo "==> Setting up keybindings for VSCode"
-  if [[ -f ${FILES}/vscode/keybindings.json ]]; then
-    ln -sf "${FILES}/vscode/keybindings.json" "${HOME}/Library/Application\ Support/Code/User/keybindings.json"
+  if [[ -f ${PROJECTDIR}/files/vscode/keybindings.json ]]; then
+    ln -sf "${PROJECTDIR}/files/vscode/keybindings.json" "${HOME}/Library/Application Support/Code/User/keybindings.json"
   fi
 }
 
