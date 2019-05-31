@@ -449,19 +449,20 @@ function iterm() {
   defaults write com.googlecode.iterm2 PrefsCustomFolder "${PROJECTDIR}/files/iterm"
   echo "==> iTern2: Loading preferences from custom folder"
   defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder true
-  echo "==> iTerm2: Don’t display the annoying prompt when quitting iTerm"
-  defaults write com.googlecode.iterm2 PromptOnQuit -bool false
-  echo "==> iTerm2: hide pane titles in split panes"
-  defaults write com.googlecode.iterm2 ShowPaneTitles -bool false
-  echo "==> iTerm2: animate split-terminal dimming"
-  defaults write com.googlecode.iterm2 AnimateDimming -bool true
-  defaults write com.googlecode.iterm2 HotkeyChar -int 96
-  defaults write com.googlecode.iterm2 HotkeyCode -int 50
-  defaults write com.googlecode.iterm2 FocusFollowsMouse -int 1
-  defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401
-  echo "==> iTerm2: setting fonts"
-  defaults write com.googlecode.iterm2 'Normal Font' -string 'PragmataPro Mono Liga 14'
-  defaults write com.googlecode.iterm2 'Non Ascii Font' -string 'PragmataPro Mono Liga 14'
+  # Since loading a plist files below settings should not be needed
+  # echo "==> iTerm2: Don’t display the annoying prompt when quitting iTerm"
+  # defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+  # echo "==> iTerm2: hide pane titles in split panes"
+  # defaults write com.googlecode.iterm2 ShowPaneTitles -bool false
+  # echo "==> iTerm2: animate split-terminal dimming"
+  # defaults write com.googlecode.iterm2 AnimateDimming -bool true
+  # defaults write com.googlecode.iterm2 HotkeyChar -int 96
+  # defaults write com.googlecode.iterm2 HotkeyCode -int 50
+  # defaults write com.googlecode.iterm2 FocusFollowsMouse -int 1
+  # defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401
+  # echo "==> iTerm2: setting fonts"
+  # defaults write com.googlecode.iterm2 'Normal Font' -string 'PragmataPro Mono Liga 14'
+  # defaults write com.googlecode.iterm2 'Non Ascii Font' -string 'PragmataPro Mono Liga 14'
 }
 
 function istatmenus() {

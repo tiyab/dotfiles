@@ -16,6 +16,8 @@
 	<integer>1</integer>
 	<key>AppleWindowTabbingMode</key>
 	<string>manual</string>
+	<key>CGFontRenderingFontSmoothingDisabled</key>
+	<false/>
 	<key>CheckTestRelease</key>
 	<true/>
 	<key>Custom Color Presets</key>
@@ -2607,7 +2609,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>427 885 918 452 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>139 394 762 532 0 0 2560 1440 </string>
+	<string>334 535 1450 544 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1542 657 585 452 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_6AF61555-19EA-42E7-B7D5-4BB20FAA171F</key>
@@ -3619,20 +3621,7 @@
 								<key>base: priority</key>
 								<real>5</real>
 								<key>format</key>
-								<string>yyMMdd hh:mm</string>
-								<key>shared text color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.89999997615814209</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.62999999523162842</real>
-									<key>Red Component</key>
-									<real>0.89999997615814209</real>
-								</dict>
+								<string>YMMdd H:mm</string>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
@@ -3697,14 +3686,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{1182, 951}</string>
+		<string>{640, 1265}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>E79298BB-8505-4833-A4DC-C0563FB46F20</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>73</integer>
+	<integer>74</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
