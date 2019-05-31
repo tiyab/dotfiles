@@ -5,11 +5,11 @@
     "editor.smoothScrolling": true,
     "python.pythonPath": "/usr/local/bin/python3",
     "explorer.confirmDelete": false,
-    "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
-    "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
-    "terminal.integrated.fontSize": 14,
+    "workbench.iconTheme": "vscode-icons",
+    "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontWeightBold": "normal",
     "editor.fontLigatures": true,
     "editor.tabSize": 2,
-    "explorer.confirmDragAndDrop": false
+    "explorer.confirmDragAndDrop": false,
+    "workbench.colorTheme": "Base16 Default Dark"
 }
