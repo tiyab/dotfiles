@@ -31,6 +31,7 @@ main() {
   mail
   spotlight
   iterm
+  istatmenus
   timemachine
   activitymonitor
   messages
@@ -444,6 +445,10 @@ function iterm() {
   if ! defaults read com.googlecode.iterm2 'Custom Color Presets' | grep 'base16-default.dark' &>/dev/null; then
     open "${PROJECTDIR}/files/iterm/base16-default.dark.itermcolors"
   fi
+  echo "==> iTerm2: Setting preferences custom folder to dotfiles"
+  defaults write com.googlecode.iterm2 PrefsCustomFolder "${PROJECTDIR}/files/iterm"
+  echo "==> iTern2: Loading preferences from custom folder"
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
   echo "==> iTerm2: Don’t display the annoying prompt when quitting iTerm"
   defaults write com.googlecode.iterm2 PromptOnQuit -bool false
   echo "==> iTerm2: hide pane titles in split panes"
@@ -457,6 +462,13 @@ function iterm() {
   echo "==> iTerm2: setting fonts"
   defaults write com.googlecode.iterm2 'Normal Font' -string 'PragmataPro Mono Liga 14'
   defaults write com.googlecode.iterm2 'Non Ascii Font' -string 'PragmataPro Mono Liga 14'
+}
+
+function istatmenus() {
+  if brew cask list istat-menus &>/dev/null; then
+    echo "==> iStat Menu: Load configuration"
+    open "${PROJECTDIR}/files/istat/iStat-Menus-Settings.ismp"
+  fi
 }
 
 function timemachine() {
