@@ -448,7 +448,7 @@ function iterm() {
   echo "==> iTerm2: Setting preferences custom folder to dotfiles"
   defaults write com.googlecode.iterm2 PrefsCustomFolder "${PROJECTDIR}/files/iterm"
   echo "==> iTern2: Loading preferences from custom folder"
-  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder true
   echo "==> iTerm2: Don’t display the annoying prompt when quitting iTerm"
   defaults write com.googlecode.iterm2 PromptOnQuit -bool false
   echo "==> iTerm2: hide pane titles in split panes"
