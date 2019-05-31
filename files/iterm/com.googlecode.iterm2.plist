@@ -2609,7 +2609,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>427 885 918 452 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>334 535 1450 544 0 0 2560 1440 </string>
+	<string>0 0 1450 544 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1542 657 585 452 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_6AF61555-19EA-42E7-B7D5-4BB20FAA171F</key>
@@ -2898,6 +2898,8 @@
 			<key>Description</key>
 			<string>Default</string>
 			<key>Disable Window Resizing</key>
+			<true/>
+			<key>Draw Powerline Glyphs</key>
 			<true/>
 			<key>Flashing Bell</key>
 			<false/>
@@ -3641,7 +3643,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<integer>1</integer>
+			<integer>3</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
@@ -3686,14 +3688,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{640, 1265}</string>
+		<string>{272, 1065}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>E79298BB-8505-4833-A4DC-C0563FB46F20</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>74</integer>
+	<integer>75</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
