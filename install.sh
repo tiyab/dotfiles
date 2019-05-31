@@ -143,7 +143,7 @@ function vim_install_vundle() {
       git clone https://github.com/VundleVim/Vundle.vim.git "${HOME}/.vim/bundle/Vundle.vim"
       if [[ -f ${PROJECTDIR}/files/vimrc ]]; then
         echo "==> Setting up custom vimrc"
-        ln -sf "${PROJECTDIR}/files/vimrc" "${HOME}/.vimrc"
+        ln -sf "${PROJECTDIR}/files/vim/vimrc" "${HOME}/.vimrc"
         echo "==> Installing plugins"
         # Unattended installation of vundle plugins
         # https://github.com/VundleVim/Vundle.vim/issues/511#issuecomment-134251209
