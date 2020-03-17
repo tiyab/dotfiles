@@ -6,10 +6,12 @@
     "python.pythonPath": "/usr/local/bin/python3",
     "explorer.confirmDelete": false,
     "workbench.iconTheme": "vscode-icons",
-    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontSize": 13,
     "terminal.integrated.fontWeightBold": "normal",
     "editor.fontLigatures": true,
     "editor.tabSize": 2,
     "explorer.confirmDragAndDrop": false,
-    "workbench.colorTheme": "Base16 Default Dark"
+    "workbench.colorTheme": "Base16 Default Dark",
+    "workbench.panel.defaultLocation": "right",
+    "terminal.external.osxExec": "iTerm.app"
 }
